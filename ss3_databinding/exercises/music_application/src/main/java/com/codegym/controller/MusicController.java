@@ -24,7 +24,7 @@ public class MusicController {
     @GetMapping("/goUpload")
     public String goUpload(Model model){
         model.addAttribute("music", new Music());
-        return "upload";  
+        return "upload";
     }
     @PostMapping("/upload")
     public String upload(@ModelAttribute Music music, RedirectAttributes redirectAttributes){
