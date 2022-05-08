@@ -12,7 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/product")
 public class ProductController {
     @Autowired
-    IProductService iProductService;
+    private IProductService iProductService;
 
     @GetMapping("")
     public String goHomePage(Model model) {
