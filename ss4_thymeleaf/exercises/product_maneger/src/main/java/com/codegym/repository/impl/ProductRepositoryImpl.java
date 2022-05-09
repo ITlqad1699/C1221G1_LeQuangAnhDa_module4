@@ -29,7 +29,7 @@ public class ProductRepositoryImpl implements IProductRepository {
 
     @Override
     public Product findById(int id) {
-        return BaseRepository.entityManager.find(Product.class,id);
+        return BaseRepository.entityManager.find(Product.class, id);
     }
 
     @Override
@@ -43,7 +43,7 @@ public class ProductRepositoryImpl implements IProductRepository {
 
     @Override
     public void
-    update( Product product) {
+    update(Product product) {
         EntityTransaction entityTransaction = BaseRepository.entityManager.getTransaction();
         entityTransaction.begin();
         BaseRepository.entityManager.merge(product);
@@ -52,8 +52,8 @@ public class ProductRepositoryImpl implements IProductRepository {
 
     @Override
     public List<Product> search(String name) {
-        TypedQuery<Product> typedQuery = BaseRepository.entityManager.createQuery("select p from Product p where p.name like :nameProduct",Product.class);
-        typedQuery.setParameter("nameProduct",name);
+        TypedQuery<Product> typedQuery = BaseRepository.entityManager.createQuery("select p from Product p where p.name like :nameProduct", Product.class);
+        typedQuery.setParameter("nameProduct", "%" + name + "%");
         return typedQuery.getResultList();
     }
 }
