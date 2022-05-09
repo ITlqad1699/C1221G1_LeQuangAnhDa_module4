@@ -10,7 +10,7 @@
         Back to customer list
     </a>
 </p>
-<form th:action="@{/product/delete}" th:object="${product}"
+<form th:action="@{/product/remove}" th:object="${product}"
       method="POST" class="form-control">
     <input type="hidden" th:field="*{id}"/>
     <div>

@@ -29,13 +29,13 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public void remove(int id) {
-        this.iProductRepository.remove(id);
+    public void remove(Product product) {
+        this.iProductRepository.remove(product);
     }
 
     @Override
-    public void update(int id, Product product) {
-        this.iProductRepository.update(id,product);
+    public void update(Product product) {
+        this.iProductRepository.update(product);
     }
 
     @Override

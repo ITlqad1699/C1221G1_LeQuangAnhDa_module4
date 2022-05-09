@@ -28,7 +28,6 @@ public class ProductController {
 
     @PostMapping("/save")
     public String createProduct(@ModelAttribute Product product) {
-        product.setId((int) (Math.random() * 10000));
         this.iProductService.save(product);
         return "redirect:/product";
     }
@@ -40,7 +39,7 @@ public class ProductController {
     }
     @PostMapping("/update")
     public String update(@ModelAttribute Product product){
-        this.iProductService.update(product.getId(),product);
+        this.iProductService.update(product);
         return "redirect:/product";
     }
 
@@ -50,9 +49,9 @@ public class ProductController {
         return "delete";
     }
 
-    @PostMapping("/delete")
-    public String deleteProduct(@ModelAttribute Product product, RedirectAttributes redirect) {
-        this.iProductService.remove(product.getId());
+    @PostMapping("/remove")
+    public String deleteProduct(@ModelAttribute Product product) {
+        this.iProductService.remove(product);
         return "redirect:/product";
     }
 

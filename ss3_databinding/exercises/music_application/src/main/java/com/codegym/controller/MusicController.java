@@ -13,7 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class MusicController {
     @Autowired
-    IMusicService iMusicService;
+    private IMusicService iMusicService;
 
     @GetMapping("/goHomePage")
     public String goHomePage(Model model){
