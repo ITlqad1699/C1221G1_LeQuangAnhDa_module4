@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="layout :: link-md-boostrap-css"></th:block>
+</head>
+<body>
+<div class="container">
+    <th:block th:replace="layout :: header"></th:block>
+    <div class="main-content pt-3 pb-3 row">
+        <a th:href="@{/goBlog/create}">
+            <button type="button" class="btn-secondary">
+                <i class="far fa-calendar-plus"></i>
+            </button>
+        </a>
+        <!-- carousel wrap-->
+
+        <div th:each="bloger: ${blog}" class="col-4">
+            <div class="card ">
+                <a th:href="@{/goBlog/view/(id=${bloger.id})}" class="card-link">
+                    <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/062.webp" class="card-img-top"
+                         alt="Chicago Skyscrapers"/>
+                </a>
+                <div class="card-body">
+                    <span>Title: <h4 class="card-title" th:text="${bloger.name}"></h4></span>
+                    <span>Author: <h5 class="card-text" th:text="${bloger.author}"></h5></span>
+                </div>
+                <div class="card-body">
+                    <a th:href="@{/goBlog/edit/(id=${bloger.id})}" class="card-link">
+                        <button type="button" class="btn btn-warning">
+                            <i class="fas fa-pen-nib"></i>
+                        </button>
+                    </a>
+                    <button
+                            th:attr="onclick=|deleteModal(${bloger.id}, '${bloger.name}')|"
+                            type="button" class="btn btn-danger" data-mdb-toggle="modal"
+                            data-mdb-target="#exampleModal">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">CONFIRM DELETE?</h5>
+                        <button type="button" class="close" data-mdb-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form th:action="@{/goBlog/delete}" method="post">
+                        <div class="modal-body">
+                            <!--                        <input type="hidden" name="action" value="delete">-->
+                            <input type="hidden" id="id_delete" name="id">
+                            <div id="name_delete"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">NO</button>
+                            <button type="submit" class="btn btn-danger">YES</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <th:block th:replace="layout :: footer"></th:block>
+</div>
+<th:block th:replace="layout :: link-md-boostrap-js"></th:block>
+</body>
+</html>
+<script>
+    function deleteModal(id, name) {
+        document.getElementById("id_delete").value = id;
+        document.getElementById("name_delete").innerText = "Name: " + name;
+    }
+</script>

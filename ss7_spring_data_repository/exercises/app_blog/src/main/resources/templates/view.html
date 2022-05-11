@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="layout :: link-md-boostrap-css"></th:block>
+</head>
+<body>
+<div class="container">
+    <th:block th:replace="layout :: header"></th:block>
+    <div class="main-conten" >
+        <form th:action="@{/goBlog/view}" th:object="${blog}"
+              method="POST" class="form-control">
+            <input type="hidden" th:field="*{id}"/>
+            <div style="text-align: center">
+                <h3 th:field="*{name}" th:text="*{name}"></h3>
+            </div>
+            <div class="row">
+                <label class="col">Author:</label>
+                <h5 class="col" th:field="*{author}" th:text="*{author}"></h5>
+            </div>
+            <div>
+                <label>Content:</label>
+                <p th:field="*{description}" th:text="*{description}"></p>
+            </div>
+            <a th:href="@{/goBlog/edit/(id=${blog.id})}" class="card-link">
+                <button type="button" class="btn btn-warning">
+                    <i class="fas fa-pen-nib"></i>
+                </button>
+            </a>
+        </form>
+    </div>
+    <th:block th:replace="layout :: footer"></th:block>
+</div>
+<th:block th:replace="layout :: link-md-boostrap-js"></th:block>
+</body>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:fragment="link-md-boostrap-css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.css" rel="stylesheet"/>
+    </th:block>
+
+</head>
+<body>
+<div th:fragment="header">
+    <header>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-white">
+            <div class="container-fluid">
+                <button
+                        class="navbar-toggler"
+                        type="button"
+                        data-mdb-toggle="collapse"
+                        data-mdb-target="#navbarExample01"
+                        aria-controls="navbarExample01"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                >
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarExample01">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item active">
+                            <a class="nav-link" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Features</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Pricing</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Navbar -->
+
+        <!-- Background image -->
+        <div
+                class="p-5 text-center bg-image"
+                style="
+      background-image: url('https://mdbcdn.b-cdn.net/img/new/slides/041.webp');
+      height: 400px;
+    "
+        >
+            <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
+                <div class="d-flex justify-content-center align-items-center h-100">
+                    <div class="text-white">
+                        <h1 class="mb-3">Heading</h1>
+                        <h4 class="mb-3">Subheading</h4>
+                        <a class="btn btn-outline-light btn-lg" href="#!" role="button"
+                        >Call to action</a
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Background image -->
+    </header>
+</div>
+
+<!--Main Navigation-->
+
+<!--Main Layout-->
+
+<!--Main Layout-->
+<div th:fragment="footer">
+    <footer class="text-center text-white" style="background-color: #caced1;">
+        <!-- Grid container -->
+        <div class="container p-4">
+            <!-- Section: Images -->
+            <section class="">
+                <div class="row">
+                    <div class="col-lg-2 col-md-12 mb-4 mb-md-0">
+                        <div
+                                class="bg-image hover-overlay ripple shadow-1-strong rounded"
+                                data-ripple-color="light"
+                        >
+                            <img
+                                    src="https://mdbcdn.b-cdn.net/img/new/fluid/city/113.webp"
+                                    class="w-100"
+                            />
+                            <a href="#!">
+                                <div
+                                        class="mask"
+                                        style="background-color: rgba(251, 251, 251, 0.2);"
+                                ></div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-12 mb-4 mb-md-0">
+                        <div
+                                class="bg-image hover-overlay ripple shadow-1-strong rounded"
+                                data-ripple-color="light"
+                        >
+                            <img
+                                    src="https://mdbcdn.b-cdn.net/img/new/fluid/city/111.webp"
+                                    class="w-100"
+                            />
+                            <a href="#!">
+                                <div
+                                        class="mask"
+                                        style="background-color: rgba(251, 251, 251, 0.2);"
+                                ></div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-12 mb-4 mb-md-0">
+                        <div
+                                class="bg-image hover-overlay ripple shadow-1-strong rounded"
+                                data-ripple-color="light"
+                        >
+                            <img
+                                    src="https://mdbcdn.b-cdn.net/img/new/fluid/city/112.webp"
+                                    class="w-100"
+                            />
+                            <a href="#!">
+                                <div
+                                        class="mask"
+                                        style="background-color: rgba(251, 251, 251, 0.2);"
+                                ></div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-12 mb-4 mb-md-0">
+                        <div
+                                class="bg-image hover-overlay ripple shadow-1-strong rounded"
+                                data-ripple-color="light"
+                        >
+                            <img
+                                    src="https://mdbcdn.b-cdn.net/img/new/fluid/city/114.webp"
+                                    class="w-100"
+                            />
+                            <a href="#!">
+                                <div
+                                        class="mask"
+                                        style="background-color: rgba(251, 251, 251, 0.2);"
+                                ></div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-12 mb-4 mb-md-0">
+                        <div
+                                class="bg-image hover-overlay ripple shadow-1-strong rounded"
+                                data-ripple-color="light"
+                        >
+                            <img
+                                    src="https://mdbcdn.b-cdn.net/img/new/fluid/city/115.webp"
+                                    class="w-100"
+                            />
+                            <a href="#!">
+                                <div
+                                        class="mask"
+                                        style="background-color: rgba(251, 251, 251, 0.2);"
+                                ></div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-12 mb-4 mb-md-0">
+                        <div
+                                class="bg-image hover-overlay ripple shadow-1-strong rounded"
+                                data-ripple-color="light"
+                        >
+                            <img
+                                    src="https://mdbcdn.b-cdn.net/img/new/fluid/city/116.webp"
+                                    class="w-100"
+                            />
+                            <a href="#!">
+                                <div
+                                        class="mask"
+                                        style="background-color: rgba(251, 251, 251, 0.2);"
+                                ></div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Section: Images -->
+        </div>
+        <!-- Grid container -->
+
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            my blog! thanks for your visiting!
+        </div>
+        <!-- Copyright -->
+    </footer>
+</div>
+<!-- MDB -->
+<th:block th:fragment="link-md-boostrap-js">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.js">
+    </script>
+</th:block>
+</body>
+</html>
