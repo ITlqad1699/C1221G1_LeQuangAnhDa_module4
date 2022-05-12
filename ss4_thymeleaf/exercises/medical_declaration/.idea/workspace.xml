@@ -20,42 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8ee4e26e-3ce0-4c8f-84b1-f17e5a97e996" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration/.gradle/6.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration/.gradle/6.1/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration/.gradle/6.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration/.gradle/6.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration/.gradle/6.1/fileContent/fileContent.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration/.gradle/6.1/fileContent/fileContent.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration/.gradle/6.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration/.gradle/6.1/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration/.gradle/6.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration/.gradle/6.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration/.gradle/6.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration/.gradle/6.1/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration/.gradle/6.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration/.gradle/6.1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration/.gradle/6.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration/.gradle/6.1/javaCompile/taskHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration/.gradle/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration/build/classes/java/main/AppConfiguration.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration/build/classes/java/main/AppInitializer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration/build/classes/java/main/com/codegym/controller/MedicalDeclarationController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration/build/classes/java/main/com/codegym/model/MedicalDeclaration.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration/build/classes/java/main/com/codegym/repository/IMedicalServiceRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration/build/classes/java/main/com/codegym/repository/impl/MedicalRepositoryImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration/build/classes/java/main/com/codegym/service/IMedicalService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration/build/classes/java/main/com/codegym/service/impl/MedicalServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration/build/libs/medical_declaration-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration/build/libs/medical_declaration-1.0-SNAPSHOT.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration/src/main/java/AppConfiguration.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration/src/main/java/AppInitializer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration/src/main/java/com/codegym/controller/MedicalDeclarationController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration/src/main/java/com/codegym/model/MedicalDeclaration.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration/src/main/java/com/codegym/repository/IMedicalServiceRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration/src/main/java/com/codegym/repository/impl/MedicalRepositoryImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration/src/main/java/com/codegym/service/IMedicalService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration/src/main/java/com/codegym/service/impl/MedicalServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration/src/main/webapp/WEB-INF/views/form_medical_declaration.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration/src/main/webapp/WEB-INF/views/list.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration/src/main/webapp/index.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../product_maneger/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../product_maneger/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../product_maneger/src/main/java/com/codegym/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../product_maneger/src/main/java/com/codegym/controller/ProductController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss8_validation/practices/custom_validation/src/main/resources/validation-message.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss8_validation/practices/music_app/src/main/resources/templates/create.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss8_validation/practices/music_app/src/main/resources/templates/edit.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss8_validation/practices/music_app/src/main/resources/templates/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss8_validation/practices/music_app/src/main/resources/templates/layout.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +68,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../ss3_databinding/exercises/medical_declaration" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -196,6 +165,7 @@
       <updated>1652007316617</updated>
       <workItem from="1652007322091" duration="672000" />
       <workItem from="1652008034289" duration="17000" />
+      <workItem from="1652343143252" duration="15000" />
     </task>
     <servers />
   </component>
