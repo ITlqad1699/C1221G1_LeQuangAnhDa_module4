@@ -8,32 +8,45 @@
 <body>
 <div class="container">
     <th:block th:replace="layout :: header"></th:block>
-    <div class="main-conten" >
+    <div class="main-conten pt-1 pb-1" >
         <form th:action="@{/goBlog/update}" th:object="${blog}"
               method="POST" class="form-control">
             <input type="hidden" th:field="*{id}"/>
-            <div>
-                <label>Name:</label>
-                <input type="text" th:field="*{name}"/>
+            <div class="my-2">
+                <div class="form-outline">
+                    <i class="fas fa-exclamation-circle trailing"></i>
+                    <input th:field="*{name}" type="text" id="form1" class="form-control form-icon-trailing"/>
+                    <label class="form-label" for="form1">name</label>
+                </div>
             </div>
-            <div>
-                <label>Author:</label>
-                <input type="text" th:field="*{author}"/>
+            <div class="my-2">
+                <div class="form-outline">
+                    <i class="fas fa-exclamation-circle trailing"></i>
+                    <input th:field="*{author}" type="text" id="form2" class="form-control form-icon-trailing"/>
+                    <label class="form-label" for="form2">author</label>
+                </div>
             </div>
-            <div>
-                <label>description</label>
-                <textarea type="text" th:field="*{description}"/>
+            <div class="my-2">
+                <div class="form-group shadow-textarea">
+                    <textarea th:field="*{description}" class="form-control z-depth-1" id="exampleFormControlTextarea6"
+                              rows="10" placeholder="Write something here..."></textarea>
+                </div>
             </div>
-            <div>
-                <label>posts</label>
-                <select th:field="*{posts}">
+            <div class="form-outline mb-4">
+<!--                <label class="form-label select-label" for="posts">posts</label>-->
+                <select th:field="*{posts}" class="form-select" id="posts" >
                     <option th:each="item :${post}"
                             th:value="${item.postId}"
-                            th:text="${item.content}"                            >
+                            th:text="${item.content}">
                     </option>
                 </select>
             </div>
-            <input type="submit" value="Edit"/>
+            <!--            <input type="submit" value="Save"/>-->
+            <center>
+                <button class="btn btn-light my-2 my-sm-0 " type="submit">
+                    Edit
+                </button>
+            </center>
         </form>
     </div>
     <th:block th:replace="layout :: footer"></th:block>

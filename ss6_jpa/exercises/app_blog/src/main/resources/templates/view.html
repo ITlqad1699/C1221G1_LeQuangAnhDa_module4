@@ -8,31 +8,20 @@
 <body>
 <div class="container">
     <th:block th:replace="layout :: header"></th:block>
-    <div class="main-conten pt-1 pb-1 " >
+    <div class="main-conten" >
         <form th:action="@{/goBlog/view}" th:object="${blog}"
-              method="POST" class="form-control" >
+              method="POST" class="form-control">
             <input type="hidden" th:field="*{id}"/>
-            <div class="input-group">
-                <div>
-                    <div class="form-outline">
-                        <i class="fas fa-exclamation-circle trailing"></i>
-                        <input th:field="*{name}" type="text" id="form1" class="form-control form-icon-trailing"/>
-                        <label class="form-label" for="form1">name</label>
-                    </div>
-                </div>
-                <div>
-                    <div class="form-outline">
-                        <i class="fas fa-exclamation-circle trailing"></i>
-                        <input th:field="*{author}" type="text" id="form2" class="form-control form-icon-trailing"/>
-                        <label class="form-label" for="form1">author</label>
-                    </div>
-                </div>
+            <div style="text-align: center">
+                <h3 th:field="*{name}" th:text="*{name}"></h3>
+            </div>
+            <div class="row">
+                <label class="col">Author:</label>
+                <h5 class="col" th:field="*{author}" th:text="*{author}"></h5>
             </div>
             <div>
-                <div class="form-group shadow-textarea">
-                    <textarea th:field="*{description}" class="form-control z-depth-1" id="exampleFormControlTextarea6"
-                              rows="10" placeholder="Write something here..."></textarea>
-                </div>
+                <label>Content:</label>
+                <p th:field="*{description}" th:text="*{description}"></p>
             </div>
             <a th:href="@{/goBlog/edit/(id=${blog.id})}" class="card-link">
                 <button type="button" class="btn btn-warning">
