@@ -3,33 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <th:block th:replace="layout :: link-md-boostrap-css"></th:block>
 </head>
 <body>
-<p>
-    <a th:href="@{/product}">
-        Back to customer list
-    </a>
-</p>
-<form th:action="@{/product/remove}" th:object="${product}"
-      method="POST" class="form-control">
-    <input type="hidden" th:field="*{id}"/>
-    <div>
-        <label>Name</label>
-        <input type="text" th:field="*{name}"/>
-    </div>
-    <div>
-        <label>price</label>
-        <input type="text" th:field="*{price}"/>
-    </div>
-    <div>
-        <label>description</label>
-        <input type="text" th:field="*{description}"/>
-    </div>
-    <div>
-        <label>producer</label>
-        <input type="text" th:field="*{producer}"/>
-    </div>
-    <input type="submit" value="Remove"/>
-</form>
+<div class="container">
+    <th:block th:replace="layout :: header"></th:block>
+    <form th:action="@{/product/remove}" th:object="${productDto}"
+          method="POST" class="form-control">
+        <input type="hidden" th:field="*{id}"/>
+        <div class="row mb-4">
+            <div class="col">
+                <div class="form-outline">
+                    <input type="text" id="formControlDefault" class="form-control" th:field="*{productCode}"/>
+                    <label class="form-label" for="formControlDefault">productCode</label>
+                </div>
+                <span class="text-danger" th:if="${#fields.hasErrors('productCode')}" th:errors="*{productCode}"></span>
+            </div>
+            <div class="col">
+                <div class="form-outline">
+                    <input type="text" id="formControlDefault1" class="form-control" th:field="*{name}"/>
+                    <label class="form-label" for="formControlDefault">Name</label>
+                </div>
+                <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+            </div>
+        </div>
+        <div class="mb-4">
+            <div class="form-outline">
+                <input type="text" id="formControlDefault2" class="form-control" th:field="*{price}"/>
+                <label class="form-label" for="formControlDefault">price</label>
+            </div>
+            <span class="text-danger" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
+        </div>
+        <div class="mb-4">
+            <div class="form-outline">
+                <input type="text" id="formControlDefault3" class="form-control" th:field="*{description}"/>
+                <label class="form-label" for="formControlDefault">description</label>
+            </div>
+            <span class="text-danger" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
+        </div>
+        <div class="mb-4">
+            <div class="form-outline">
+                <input type="text" id="formControlDefault4" class="form-control" th:field="*{producer}"/>
+                <label class="form-label" for="formControlDefault">producer</label>
+            </div>
+            <span class="text-danger" th:if="${#fields.hasErrors('producer')}" th:errors="*{producer}"></span>
+        </div>
+        <input type="submit" value="remove">
+    </form>
+    <th:block th:replace="layout :: footer"></th:block>
+</div>
+<th:block th:replace="layout :: link-md-boostrap-js"></th:block>
 </body>
 </html>

@@ -18,7 +18,7 @@ public interface IProductService {
 
     Optional<Product> findById(Integer id);
 
-   Page<Product> findAllByName(String keyword, Pageable pageable);
+    Page<Product> findAllByName(String keyword, Pageable pageable);
 
     List<String> getProductCode();
 }

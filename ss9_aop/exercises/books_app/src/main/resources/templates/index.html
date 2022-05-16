@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="layout :: link-md-boostrap-css"></th:block>
+</head>
+<body>
+<div class="container">
+    <th:block th:replace="layout :: header"></th:block>
+    <div class="main-content pt-3 pb-3 row">
+        <div th:each="book: ${books}" class="col">
+            <div class="card pt-2">
+                <a th:href="@{/goLibrary/view/(id=${book.id})}" class="card-link">
+                    <!--                    <th:block th:replace="layout :: carousel"></th:block>-->
+                    <img th:src="@{${book.image}}" class="card-img-top"   alt="Fissure in Sandstone"/>
+                </a>
+                <div class="card-body">
+                    <span>Name: <h4 class="card-title" th:text="${book.nameBooks}"></h4></span>
+                    <h6>Price: <span class="badge bg-primary" th:text="${book.price}"></span></h6>
+                    <span>Quantity: <h5 class="card-text" th:text="${book.quantity}"></h5></span>
+                </div>
+                <div class="card-body">
+                    <a th:href="@{/goborrow/(id=${book.id})}" class="card-link">
+                        <button type="button" class="btn btn-warning">
+<!--                            <i class="fas fa-pen-nib"></i>-->
+                            borrow
+                        </button>
+                    </a>
+                    <a th:href="@{/goGiveBack}" class="card-link">
+                        <button type="button" class="btn btn-danger">
+<!--                            <i class="fas fa-pen-nib"></i>-->
+                            give back
+                        </button>
+                    </a>
+                    <!--                    <button-->
+                    <!--                            th:attr="onclick=|deleteModal(${book.id}, '${book.name}')|"-->
+                    <!--                            type="button" class="btn btn-danger" data-mdb-toggle="modal"-->
+                    <!--                            data-mdb-target="#exampleModal">-->
+                    <!--                        <i class="fas fa-trash"></i>-->
+                    <!--                    </button>-->
+<!--                    <button-->
+<!--                            th:attr="onclick=|deleteModal(${book.id}, '${book.nameBooks}')|"-->
+<!--                            type="button" class="btn btn-danger" data-mdb-toggle="modal"-->
+<!--                            data-mdb-target="#exampleModal">-->
+<!--                        <i class="fas fa-trash"></i>-->
+<!--                    </button>-->
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <a th:attr="class=${!books.hasPrevious() ? 'disable' : ''} "
+                   th:href="@{/goLibrary/(page=${books.number-1},keyword=${keywordName})}"
+                >
+                    <i class="fas fa-angle-left"></i>
+                </a>
+                <!--                <span th:text="${blog.number+1}"></span>-->
+                <!--                /-->
+                <!--                <span th:text="${blog.totalPages}"></span>-->
+                <a th:attr="class=${!books.hasNext() ? 'disable' : ''} "
+                   th:href="@{/goLibrary/(page=${books.number+1},keyword=${keywordName})}">
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+            </div>
+        </div>
+<!--        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"-->
+<!--             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">-->
+<!--            <div class="modal-dialog modal-dialog-centered" role="document">-->
+<!--                <div class="modal-content">-->
+<!--                    <div class="modal-header">-->
+<!--                        <h5 class="modal-title" id="exampleModalLongTitle">CONFIRM DELETE?</h5>-->
+<!--                        <button type="button" class="close" data-mdb-dismiss="modal" aria-label="Close">-->
+<!--                            <span aria-hidden="true">&times;</span>-->
+<!--                        </button>-->
+<!--                    </div>-->
+<!--                    <form th:action="@{/goLibrary/delete}" method="post">-->
+<!--                        <div class="modal-body">-->
+<!--                            &lt;!&ndash;                        <input type="hidden" name="action" value="delete">&ndash;&gt;-->
+<!--                            <input type="hidden" id="id_delete" name="id">-->
+<!--                            <div id="name_delete"></div>-->
+<!--                        </div>-->
+<!--                        <div class="modal-footer">-->
+<!--                            <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">NO</button>-->
+<!--                            <button type="submit" class="btn btn-danger">YES</button>-->
+<!--                        </div>-->
+<!--                    </form>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+    <th:block th:replace="layout :: footer"></th:block>
+</div>
+
+<th:block th:replace="layout :: link-md-boostrap-js"></th:block>
+</body>
+</html>

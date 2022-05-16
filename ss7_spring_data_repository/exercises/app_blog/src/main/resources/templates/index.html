@@ -15,12 +15,6 @@
 <div class="container">
     <th:block th:replace="layout :: header"></th:block>
     <div class="main-content pt-3 pb-3 row">
-<!--        <form th:action="@{/goBlog}">-->
-<!--            <select name="" id="">-->
-
-<!--            </select>-->
-<!--        </form>-->
-<!--        <a href=""></a>-->
         <div th:each="bloger: ${blog}" class="col">
             <div class="card pt-2">
                 <a th:href="@{/goBlog/view/(id=${bloger.id})}" class="card-link">

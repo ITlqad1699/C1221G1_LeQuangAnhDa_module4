@@ -9,15 +9,14 @@ import java.util.List;
 
 public class ProductDto implements Validator {
     private Integer id;
-    @NotBlank(message = "not null")
+    @NotBlank(message = "*not null")
     private String productCode;
-    @NotBlank(message = "not null")
+    @NotBlank(message = "*not null")
     private String name;
-    //    @NotBlank(message = "not null")
     private String price;
-    @NotBlank(message = "not null")
+    @NotBlank(message = "*not null")
     private String description;
-    @NotBlank(message = "not null")
+    @NotBlank(message = "*not null")
     private String producer;
     private List<String> productCodeList;
 
@@ -89,20 +88,22 @@ public class ProductDto implements Validator {
     public void validate(Object target, Errors errors) {
         ProductDto productDto = (ProductDto) target;
         String priceValid = productDto.getPrice();
-        if (productDto.getProductCodeList().contains(productDto.getProductCode())) {
-            errors.rejectValue("productCode", "product.error", "errors");
-        }
 
+        if (productDto.getProductCodeList().contains(productDto.getProductCode())) {
+            errors.rejectValue("productCode", "product-code.duplicate", "errors");
+        }
+//        if (!priceValid.matches("(^SP-\\d{4}$)")) {
+//            errors.rejectValue("productCode", "product-code.format", "errors");
+//        }
         if ("".equals(priceValid)) {
             ValidationUtils.rejectIfEmpty(errors, "price", "price.empty", "errors");
         } else {
             if (!priceValid.matches("(^$|[0-9]*$)")) {
                 errors.rejectValue("price", "price.matches", "errors");
-//            }else {
-//                if (Double.parseDouble(priceValid) < 0) {
-//                    errors.rejectValue("price", "price.value", "errors");
-//                }
             }
         }
     }
 }
+//else{
+//        errors.rejectValue("price", "price.positive", "errors");
+//        }

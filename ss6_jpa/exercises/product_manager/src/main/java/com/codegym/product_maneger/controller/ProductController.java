@@ -9,7 +9,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -74,31 +73,51 @@ public class ProductController {
 
     @GetMapping("/edit")
     public String goEditForm(Model model, @RequestParam Integer id) {
-        model.addAttribute("product", this.iProductService.findById(id));
+        Optional<Product> product = this.iProductService.findById(id);
+        ProductDto productDto = new ProductDto();
+        BeanUtils.copyProperties(product.get(), productDto);
+        model.addAttribute("productDto", productDto);
         return "edit";
     }
 
     @PostMapping("/update")
-    public String update(@ModelAttribute Product product) {
-        this.iProductService.save(product);
-        return "redirect:/product";
+    public String update(@ModelAttribute @Validated ProductDto productDto,
+                         BindingResult bindingResult) {
+        productDto.setProductCodeList(iProductService.getProductCode());
+        new ProductDto().validate(productDto, bindingResult);
+        if (bindingResult.hasFieldErrors()) {
+            return "create";
+        } else {
+            Product product1 = new Product();
+            BeanUtils.copyProperties(productDto, product1);
+            this.iProductService.save(product1);
+            return "redirect:/product";
+        }
     }
 
     @GetMapping("/delete")
-    public String goDeleteForm(@RequestParam int id, Model model) {
-        model.addAttribute("product", this.iProductService.findById(id));
+    public String goDeleteForm(@RequestParam Integer id, Model model) {
+        Optional<Product> product = this.iProductService.findById(id);
+        ProductDto productDto = new ProductDto();
+        BeanUtils.copyProperties(product.get(), productDto);
+        model.addAttribute("productDto", productDto);
         return "delete";
     }
 
     @PostMapping("/remove")
-    public String deleteProduct(@ModelAttribute Product product) {
+    public String deleteProduct(@ModelAttribute @Validated ProductDto productDto) {
+        Product product = new Product();
+        BeanUtils.copyProperties(productDto, product);
         this.iProductService.remove(product);
         return "redirect:/product";
     }
 
     @GetMapping("/view")
-    public String view(@RequestParam int id, Model model) {
-        model.addAttribute("product", this.iProductService.findById(id));
+    public String view(@RequestParam Integer id, Model model) {
+        Optional<Product> product = this.iProductService.findById(id);
+        ProductDto productDto = new ProductDto();
+        BeanUtils.copyProperties(product.get(), productDto);
+        model.addAttribute("productDto", productDto);
         return "view";
     }
 }
