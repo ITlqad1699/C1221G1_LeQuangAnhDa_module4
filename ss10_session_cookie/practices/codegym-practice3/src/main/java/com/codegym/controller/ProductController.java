@@ -1,4 +1,5 @@
 package com.codegym.controller;
+
 import com.codegym.model.Cart;
 import com.codegym.model.Product;
 import com.codegym.service.IProductService;
@@ -34,12 +35,12 @@ public class ProductController {
         if (!productOptional.isPresent()) {
             return "/error.404";
         }
-        if (action.equals("show")) {
+        if (action.equals("add")) {
             cart.addProduct(productOptional.get());
             return "redirect:/shopping-cart";
         }
-        if (action.equals("show1")) {
-            cart.minusProduct(productOptional.get());
+        if (action.equals("minus")) {
+            cart.removeProduct(productOptional.get());
             return "redirect:/shopping-cart";
         }
         cart.addProduct(productOptional.get());
@@ -47,17 +48,22 @@ public class ProductController {
     }
 
     @GetMapping("/view")
-    public String goDetail(@RequestParam Long id, Model model){
+    public String goDetail(@RequestParam Long id, Model model) {
         Optional<Product> product = productService.findById(id);
-        model.addAttribute("product",product.get());
+        model.addAttribute("product", product.get());
         return "view";
     }
 
-    @GetMapping("/delete")
-    public String deleteFromCart(@RequestParam Long id,@ModelAttribute Cart cart,Model model){
-        Optional<Product> productOptional = productService.findById(id);
-        cart.removeProdut(productOptional);
-        model.addAttribute("cart",cart);
+    @GetMapping("/delete/{id}")
+    public String deleteFromCart(@PathVariable Long id,
+                                 @ModelAttribute Cart cart) {
+        Product product = productService.findById(id).get();
+        cart.remove(product);
         return "redirect:/shopping-cart";
+    }
+
+    @GetMapping("/pay")
+    public String goPayment(){
+        return "payment";
     }
 }

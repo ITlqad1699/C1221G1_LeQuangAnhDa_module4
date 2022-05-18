@@ -8,7 +8,7 @@
 <body>
 <div class="container col-10">
     <th:block th:replace="layout :: header"></th:block>
-    <form th:action="@{/shop}" th:object="${cart}" method="post">
+    <form th:action="@{/pay}" th:object="${cart}" method="get">
         <!--        <h5>Total Items: <span th:text="${cart.countItemQuantity()}"></span></h5>-->
         <!--        <h5>Total Products: <span th:text="${cart.countProductQuantity()}"></span></h5>-->
         <!--        <div class="main-content pt-3 pb-3 row">-->
@@ -55,32 +55,18 @@
                 </th>
                 <th th:text="${row.getKey().manufacturer}"></th>
                 <th class="col-2">
-                    <!--                    <a th:href="@{/product/edit(id=${row.id})}">-->
-                    <!--                        <button type="button" class="btn btn-warning">-->
-                    <!--                            <i class="fas fa-pen-nib"></i>-->
-                    <!--                        </button>-->
-                    <!--                    </a>-->
-                    <!--                    <a th:href="@{/product/view(id=${row.id})}">-->
-                    <!--                        <button type="button" class="btn btn-info">-->
-                    <!--                            <i class="far fa-eye"></i>-->
-                    <!--                        </button>-->
-                    <!--                    </a>-->
-                    <a id="decrease_button" th:href="@{/add/__${row.getKey().id}__(action='show1')}"
-                       th:text="${'-'}">
-                        <button type="button" class="btn btn-light">
+                        <a id="decrease_button" th:href="@{/add/__${row.getKey().id}__(action='minus')}"
+                           th:text="${'-'}" style="display: inline-block">
                             +
-                        </button>
-                    </a>
-                    <span th:text="${row.getValue()}"></span>
-                    <a id="increase_button" th:href="@{/add/__${row.getKey().id}__(action='show')}"
-                       th:text="${'+'}">
-                        <button type="button" class="btn btn-light">
+                        </a>
+                        <span th:text="${row.getValue()}"></span>
+                        <a id="increase_button" th:href="@{/add/__${row.getKey().id}__(action='add')}"
+                           th:text="${'+'}" style="display: inline-block">
                             -
-                        </button>
-                    </a>
+                        </a>
                 </th>
                 <th>
-                    <a th:href="@{/delete(id=${row.getKey().id})}">
+                    <a th:href="@{/delete/__${row.getKey().id}__}">
                         <button type="button" class="btn btn-danger">
                             <i class="fas fa-trash"></i>
                         </button>
@@ -89,15 +75,11 @@
             </tr>
             </tbody>
         </table>
-        <div class="input group">
-            <h4>Total Payments: <span class="badge bg-secondary" th:text="${cart.countTotalPayment()}+'$'"></span></h4>
-            <a>
-                <button type="submit" class="btn btn-primary">
-                    buy
-                </button>
-            </a>
-        </div>
-
+        <a th:href="@{/pay}">
+            <button type="submit" class="btn btn-primary">
+                pay
+            </button>
+        </a>
     </form>
     <th:block th:replace="layout :: footer"></th:block>
 </div>

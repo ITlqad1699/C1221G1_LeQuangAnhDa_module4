@@ -1,23 +1,13 @@
-package com.codegym.app_blog.model;
+package com.codegym.app_blog.dto;
 
-import javax.persistence.*;
-import java.util.List;
-
-
-@Entity
-@Table(name = "post")
-public class Posts {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class CategoryDto {
     private Integer postId;
     private String content;
-    @OneToMany(mappedBy = "posts")
-    private List<BlogModel> blogModels;
 
-    public Posts() {
+    public CategoryDto() {
     }
 
-    public Posts(Integer postId, String content) {
+    public CategoryDto(Integer postId, String content) {
         this.postId = postId;
         this.content = content;
     }

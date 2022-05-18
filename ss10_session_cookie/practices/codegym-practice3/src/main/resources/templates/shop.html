@@ -14,8 +14,6 @@
                 your cart
             </button>
         </a>
-
-        </th:block>
         <div class="main-content pt-3 pb-3 row">
             <div th:each="product: ${products}" class="col-4">
                 <div class="card pt-2">
@@ -36,8 +34,9 @@
                 </div>
             </div>
         </div>
-        <th:block th:replace="layout :: footer"></th:block>
     </div>
+    <th:block th:replace="layout :: footer"></th:block>
+</div>
 </body>
 <th:block th:replace="layout :: link-md-boostrap-js"></th:block>
 </html>

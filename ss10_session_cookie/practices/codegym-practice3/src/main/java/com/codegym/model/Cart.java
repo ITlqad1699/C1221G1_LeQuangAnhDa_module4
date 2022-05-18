@@ -2,7 +2,6 @@ package com.codegym.model;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 public class Cart {
     private Map<Product,Integer> products = new HashMap<>();
@@ -52,6 +51,9 @@ public class Cart {
             Integer newQuantity = itemEntry.getValue() - 1;
             products.replace(itemEntry.getKey(),newQuantity);
         }
+        if(this.countProductQuantity() == 0){
+            this.removeProduct(product);
+        }
     }
 
     public Integer countProductQuantity(){
@@ -74,11 +76,21 @@ public class Cart {
         return payment;
     }
 
-    public void removeProdut(Optional<Product> productOptional) {
-        for (Map.Entry<Product, Integer> entry : products.entrySet()) {
-            if(entry.getKey().getId().equals(productOptional.get().getId())){
-                products.remove(productOptional.get());
+    public void removeProduct(Product product) {
+            Map.Entry<Product, Integer> entry = this.selectItemInCart(product);
+            if(entry.getValue()<=0){
+                products.remove(entry.getKey());
+            }else{
+                Integer quantity = entry.getValue()-1;
+                products.replace(entry.getKey(),quantity);
             }
+    }
+
+
+    public void remove(Product product) {
+        Map.Entry<Product, Integer> entry = this.selectItemInCart(product);
+        if(this.checkItemInCart(entry.getKey())){
+            products.remove(entry.getKey());
         }
     }
 }

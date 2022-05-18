@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="layout :: link-md-boostrap-css"></th:block>
+</head>
+<body>
+<div class="container">
+    <th:block th:replace="layout :: header"></th:block>
+    <div class="main-conten pt-1 pb-1" >
+        <form th:action="@{/goBlog/save}" th:object="${blog}"
+              method="POST" class="form-control">
+                <div class="my-2">
+                    <div class="form-outline">
+                        <i class="fas fa-exclamation-circle trailing"></i>
+                        <input th:field="*{name}" type="text" id="form1" class="form-control form-icon-trailing"/>
+                        <label class="form-label" for="form1">name</label>
+                    </div>
+                </div>
+            <div class="my-2">
+                    <div class="form-outline">
+                        <i class="fas fa-exclamation-circle trailing"></i>
+                        <input th:field="*{author}" type="text" id="form2" class="form-control form-icon-trailing"/>
+                        <label class="form-label" for="form2">author</label>
+                    </div>
+                </div>
+            <div class="my-2">
+                <div class="form-group shadow-textarea">
+                    <textarea th:field="*{description}" class="form-control z-depth-1" id="exampleFormControlTextarea6"
+                              rows="10" placeholder="Write something here..."></textarea>
+                </div>
+            </div>
+            <div class="form-outline mb-4">
+                <!--                <label class="form-label select-label" for="posts">posts</label>-->
+                <select th:field="*{posts}" class="form-select" id="posts" >
+                    <option th:each="item :${post}"
+                            th:value="${item.postId}"
+                            th:text="${item.content}">
+                    </option>
+                </select>
+            </div>
+<!--            <input type="submit" value="Save"/>-->
+            <center>
+                <button class="btn btn-light my-2 my-sm-0 " type="submit">
+                    Save
+                </button>
+            </center>
+
+        </form>
+    </div>
+    <th:block th:replace="layout :: footer"></th:block>
+</div>
+<th:block th:replace="layout :: link-md-boostrap-js"></th:block>
+</body>
