@@ -50,4 +50,8 @@ public class BlogService implements IBlogService {
         return this.iBlogRepository.findAll(pageable);
     }
 
+    @Override
+    public Page<BlogModel> findAllByNameAndAuthorAndPost(String keywordName, String keywordAuthor, Integer postId, Pageable pageable) {
+        return this.iBlogRepository.findAllByNameContainingAndAuthorContainingAndPosts_PostId(keywordName,keywordAuthor,postId,pageable);
+    }
 }

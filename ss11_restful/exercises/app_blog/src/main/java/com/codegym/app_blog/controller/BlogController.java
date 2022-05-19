@@ -26,7 +26,6 @@ public class BlogController {
     public String goHomePage(Model model,
                              @PageableDefault(value = 3) Pageable pageable,
                              @RequestParam Optional<String> name) {
-        model.addAttribute("post", this.iPostsService.findAll());
         String keyword = name.orElse("");
         model.addAttribute("blog",this.iBlogService.findAllByName(keyword,pageable));
         model.addAttribute("keyword",keyword);

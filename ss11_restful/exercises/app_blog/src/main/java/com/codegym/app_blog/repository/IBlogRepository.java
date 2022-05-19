@@ -16,10 +16,6 @@ public interface IBlogRepository  extends JpaRepository<BlogModel,Integer> {
 
     Page<BlogModel> findAllByNameContaining(String keyword, Pageable pageable);
 
-//    @Query(value ="select id,`name`,`description`, author, content " +
-//            "from blog_table join post on blog_table.post_id = post.post_id " +
-//            "where blog_table.post_id =  :postId " , nativeQuery = true)
-//    Page<BlogModel> findAllByPosts(@Param("postId") Integer postId,Pageable pageable);
-
+    Page<BlogModel> findAllByNameContainingAndAuthorContainingAndPosts_PostId(String keywordName, String keywordAuthor, Integer postId, Pageable pageable);
 
 }

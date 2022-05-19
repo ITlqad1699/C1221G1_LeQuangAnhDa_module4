@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/blog")
 public class RestControllerBlog {
@@ -24,12 +25,16 @@ public class RestControllerBlog {
     IPostsService iPostsService;
     @GetMapping("/list")
     public ResponseEntity<Page<BlogModel>> getPageBlog(
-            @PageableDefault(value = 3) Pageable pageable){
-        Page<BlogModel> blogModelPage = this.iBlogService.findAllPage(pageable);
-        if(!blogModelPage.hasContent()){
+            @PageableDefault(value = 3) Pageable pageable,
+            @RequestParam Optional<String> name){
+
+        String keywordName = name.orElse("");
+
+        Page<BlogModel> blogModels = this.iBlogService.findAllByName(keywordName,pageable);
+        if(!blogModels.hasContent()){
             return  new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(blogModelPage,HttpStatus.OK);
+        return new ResponseEntity<>(blogModels,HttpStatus.OK);
     }
 
     @GetMapping("/list-category")
@@ -62,4 +67,19 @@ public class RestControllerBlog {
         }
         return new ResponseEntity<>(blogModel,HttpStatus.OK);
     }
+
+//    @GetMapping("/search-blog")
+//    public ResponseEntity<Page<BlogModel>> searchBlog(@PageableDefault(value = 3) Pageable pageable,
+//                                                      @RequestParam Optional<String> name,
+//                                                      @RequestParam Optional<String> author,
+//                                                      @RequestParam Integer postId
+//                                                      ){
+//        String keywordName = name.orElse("");
+//        String keywordAuthor = author.orElse("");
+//        Page<BlogModel> blogModels = this.iBlogService.findAllByNameAndAuthorAndPost(keywordName,keywordAuthor,postId,pageable);
+//        if(blogModels.isEmpty()){
+//            return  new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//        return new ResponseEntity<>(blogModels,HttpStatus.OK);
+//    }
 }

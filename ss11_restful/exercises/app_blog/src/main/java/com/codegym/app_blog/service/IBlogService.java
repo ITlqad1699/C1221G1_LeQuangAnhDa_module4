@@ -22,4 +22,5 @@ public interface IBlogService {
     Page<BlogModel> findAllPage(Pageable pageable);
 
 
+    Page<BlogModel> findAllByNameAndAuthorAndPost(String keywordName, String keywordAuthor, Integer postId, Pageable pageable);
 }
