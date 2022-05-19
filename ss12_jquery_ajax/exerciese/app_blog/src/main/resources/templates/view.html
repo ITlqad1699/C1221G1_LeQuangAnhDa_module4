@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="layout :: link-md-boostrap-css"></th:block>
+</head>
+<body>
+<div class="container">
+    <th:block th:replace="layout :: header"></th:block>
+    <div class="main-conten pt-1 pb-1 " >
+        <form th:action="@{/goBlog/view}" th:object="${blog}"
+              method="POST" class="form-control" >
+            <input type="hidden" th:field="*{id}"/>
+            <div class="input-group">
+                <div>
+                    <div class="form-outline">
+                        <i class="fas fa-exclamation-circle trailing"></i>
+                        <input th:field="*{name}" type="text" id="form1" class="form-control form-icon-trailing"/>
+                        <label class="form-label" for="form1">name</label>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-outline">
+                        <i class="fas fa-exclamation-circle trailing"></i>
+                        <input th:field="*{author}" type="text" id="form2" class="form-control form-icon-trailing"/>
+                        <label class="form-label" for="form1">author</label>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="form-group shadow-textarea">
+                    <textarea th:field="*{description}" class="form-control z-depth-1" id="exampleFormControlTextarea6"
+                              rows="10" placeholder="Write something here..."></textarea>
+                </div>
+            </div>
+            <a th:href="@{/goBlog/edit/(id=${blog.id})}" class="card-link">
+                <button type="button" class="btn btn-warning">
+                    <i class="fas fa-pen-nib"></i>
+                </button>
+            </a>
+        </form>
+    </div>
+    <th:block th:replace="layout :: footer"></th:block>
+</div>
+<th:block th:replace="layout :: link-md-boostrap-js"></th:block>
+</body>
