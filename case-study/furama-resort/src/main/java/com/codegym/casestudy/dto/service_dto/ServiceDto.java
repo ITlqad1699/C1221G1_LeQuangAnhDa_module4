@@ -1,6 +1,9 @@
 package com.codegym.casestudy.dto.service_dto;
 
 import com.codegym.casestudy.dto.contract_dto.ContractDto;
+import com.codegym.casestudy.model.service.RentType;
+import com.codegym.casestudy.model.service.ServiceType;
+
 import java.util.List;
 
 public class ServiceDto {
@@ -15,8 +18,8 @@ public class ServiceDto {
     private String numOfFloor;
     private String serviceCode;
     List<ContractDto> contractDtoList;
-    private ServiceTypeDto serviceTypeDto;
-    private RentTypeDto rentTypeDto;
+    private ServiceType serviceType;
+    private RentType rentType;
 
     public ServiceDto() {
     }
@@ -109,19 +112,19 @@ public class ServiceDto {
         this.contractDtoList = contractDtoList;
     }
 
-    public ServiceTypeDto getServiceTypeDto() {
-        return serviceTypeDto;
+    public ServiceType getServiceType() {
+        return serviceType;
     }
 
-    public void setServiceTypeDto(ServiceTypeDto serviceTypeDto) {
-        this.serviceTypeDto = serviceTypeDto;
+    public void setServiceType(ServiceType serviceType) {
+        this.serviceType = serviceType;
     }
 
-    public RentTypeDto getRentTypeDto() {
-        return rentTypeDto;
+    public RentType getRentType() {
+        return rentType;
     }
 
-    public void setRentTypeDto(RentTypeDto rentTypeDto) {
-        this.rentTypeDto = rentTypeDto;
+    public void setRentType(RentType rentType) {
+        this.rentType = rentType;
     }
 }

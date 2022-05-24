@@ -1,9 +1,15 @@
 package com.codegym.casestudy.dto.employee_dto;
 
 import com.codegym.casestudy.dto.contract_dto.ContractDto;
+import com.codegym.casestudy.model.employee.Division;
+import com.codegym.casestudy.model.employee.EducationDegree;
+import com.codegym.casestudy.model.employee.Position;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
+
 import java.util.List;
 
-public class EmployeeDto {
+public class EmployeeDto implements Validator {
     private Integer id;
     private String idCard;
     private String salary;
@@ -11,12 +17,10 @@ public class EmployeeDto {
     private String birthDay;
     private String phone;
     private String email;
-    private String address;
-    private String username;
-    List<ContractDto> contractDtoList;
-    private PositionDto positionDto;
-    private DivisionDto divisionDto;
-    private EducationDegreeDto educationDegreeDto;
+    private String address;;
+    private Position position;
+    private Division division;
+    private EducationDegree educationDegree;
 
     public EmployeeDto() {
     }
@@ -85,43 +89,39 @@ public class EmployeeDto {
         this.address = address;
     }
 
-    public String getUsername() {
-        return username;
+
+    public Position getPosition() {
+        return position;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setPosition(Position position) {
+        this.position = position;
     }
 
-    public List<ContractDto> getContractDtoList() {
-        return contractDtoList;
+    public Division getDivision() {
+        return division;
     }
 
-    public void setContractDtoList(List<ContractDto> contractDtoList) {
-        this.contractDtoList = contractDtoList;
+    public void setDivision(Division division) {
+        this.division = division;
     }
 
-    public PositionDto getPositionDto() {
-        return positionDto;
+    public EducationDegree getEducationDegree() {
+        return educationDegree;
     }
 
-    public void setPositionDto(PositionDto positionDto) {
-        this.positionDto = positionDto;
+    public void setEducationDegree(EducationDegree educationDegree) {
+        this.educationDegree = educationDegree;
     }
 
-    public DivisionDto getDivisionDto() {
-        return divisionDto;
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return false;
     }
 
-    public void setDivisionDto(DivisionDto divisionDto) {
-        this.divisionDto = divisionDto;
-    }
+    @Override
+    public void validate(Object target, Errors errors) {
 
-    public EducationDegreeDto getEducationDegreeDto() {
-        return educationDegreeDto;
-    }
-
-    public void setEducationDegreeDto(EducationDegreeDto educationDegreeDto) {
-        this.educationDegreeDto = educationDegreeDto;
     }
 }
+

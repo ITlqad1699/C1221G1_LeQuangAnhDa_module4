@@ -1,6 +1,7 @@
 package com.codegym.casestudy.model.employee;
 
 import com.codegym.casestudy.model.contract.Contract;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.List;
@@ -20,7 +21,10 @@ public class Employee {
     private String phone;
     private String email;
     private String address;
-    private String username;
+
+    @JsonIgnore
+    private Integer flag;
+//    private String username;
 
     @OneToMany(mappedBy = "employee")
     List<Contract> contractList;
@@ -40,19 +44,12 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(Integer id, String idCard, String salary, String name, String birthDay, String phone, String email, String address, String username, Position position, Division division, EducationDegree educationDegree) {
-        this.id = id;
-        this.idCard = idCard;
-        this.salary = salary;
-        this.name = name;
-        this.birthDay = birthDay;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.username = username;
-        this.position = position;
-        this.division = division;
-        this.educationDegree = educationDegree;
+    public Integer getFlag() {
+        return flag;
+    }
+
+    public void setFlag(Integer flag) {
+        this.flag = flag;
     }
 
     public List<Contract> getContractList() {
@@ -63,13 +60,6 @@ public class Employee {
         this.contractList = contractList;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
 
     public String getName() {
         return name;

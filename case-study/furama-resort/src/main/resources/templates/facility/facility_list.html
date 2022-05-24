@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="layout :: link-md-boostrap-css"></th:block>
+    <style>
+        a.disable {
+            pointer-events: none;
+            cursor: default;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <a th:href="@{/facility/goCreate}">
+        <button class="btn btn-light my-2 my-sm-0" type="button">
+            <i class="fas fa-plus"></i>
+        </button>
+    </a>
+    <form th:action="@{/facility}" method="get">
+        <div class="input-group">
+            <input class="form-control mr-sm-2" aria-label="Search" placeholder="name"
+                   type="text"
+                   name="name">
+            <button class="btn btn-light my-2 my-sm-0" type="submit">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+        <div class="input-group">
+            <select name="sort" class="form-control">
+                <option value="name">name</option>
+<!--                <option value="customerCode">customer code</option>-->
+            </select >
+            <select name="dir" class="form-control">
+                <option value="asc">asc</option>
+                <option value="desc">desc</option>
+            </select>
+            <button class="btn btn-dark my-2 my-sm-0" type="submit">
+                sort
+            </button>
+        </div>
+    </form>
+</div>
+<table id="customers" class="table table-striped bg-light ">
+    <thead class="thead-dark bg-info">
+    <tr>
+        <th class="col-1">No</th>
+        <th class="col-1">Name</th>
+        <th class="col-1">Code</th>
+        <th class="col-1">Cost</th>
+        <th class="col-1">People</th>
+        <th class="col-1">Standard</th>
+        <th class="col-1">poolArea</th>
+        <th class="col-1">numOfFloor</th>
+        <th class="col-1">serviceCode</th>
+        <th class="col-3">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="row,rowStat : ${facilities}">
+        <td th:text="${rowStat.count}"></td>
+        <td th:text="${row.name}"></td>
+        <td th:text="${row.area}"></td>
+        <td th:text="${row.cost}"></td>
+        <td th:text="${row.maxPeople}"></td>
+        <td th:text="${row.standardRoom}"></td>
+        <td th:text="${row.poolArea}"></td>
+        <td th:text="${row.numOfFloor}"></td>
+        <td th:text="${row.serviceCode}"></td>
+
+        <td>
+            <a th:href="@{/facility/edit(id=${row.id})}">
+                <button type="button" class="btn btn-warning">
+                    <i class="fas fa-pen-nib"></i>
+                </button>
+            </a>
+            <button
+                    th:attr="onclick=|deleteModal(${row.id}, '${row.name}')|"
+                    type="button" class="btn btn-danger" data-mdb-toggle="modal"
+                    data-mdb-target="#exampleModal">
+                <i class="fas fa-trash"></i>
+            </button>
+            <a th:href="@{/facility/detail(id=${row.id})}">
+                <button type="button" class="btn btn-info">
+                    <i class="far fa-eye"></i>
+                </button>
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<!--<div class="row">-->
+<!--    <div class="col-lg-12">-->
+<!--        <a th:attr="class=${!customers.hasPrevious() ? 'disable' : ''} "-->
+<!--           th:href="@{/customer/(page=${customers.number-1},keywordName=${keywordName},keywordName=${keywordName},sortVal=${sortVal},dirVal=${dirVal})}">-->
+<!--            <i class="fas fa-angle-left"></i>-->
+<!--        </a>-->
+<!--        &lt;!&ndash;                <span th:text="${blog.number+1}"></span>&ndash;&gt;-->
+<!--        &lt;!&ndash;                /&ndash;&gt;-->
+<!--        &lt;!&ndash;                <span th:text="${blog.totalPages}"></span>&ndash;&gt;-->
+<!--        <a th:attr="class=${!customers.hasNext() ? 'disable' : ''} "-->
+<!--           th:href="@{/customer/(page=${customers.number+1},keywordName=${keywordName},sortVal=${sortVal},,dirVal=${dirVal})}">-->
+<!--            <i class="fas fa-chevron-right"></i>-->
+<!--        </a>-->
+<!--    </div>-->
+<!--</div>-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">CONFIRM DELETE?</h5>
+                <button type="button" class="close" data-mdb-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form th:action="@{/facility/delete}" method="post">
+                <div class="modal-body">
+                    <!--                        <input type="hidden" name="action" value="delete">-->
+                    <input type="hidden" id="id_delete" name="id">
+                    <div id="name_delete"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">NO</button>
+                    <button type="submit" class="btn btn-danger">YES</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<th:block th:replace="layout :: link-md-boostrap-js"></th:block>
+</body>
+</html>
+<script>
+    function deleteModal(id, name) {
+        document.getElementById("id_delete").value = id;
+        document.getElementById("name_delete").innerText = "Name: " + name;
+    }
+</script>

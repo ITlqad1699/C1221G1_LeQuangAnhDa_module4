@@ -22,8 +22,7 @@ public class Customer {
     @Column(name = "customer_code")
     private String customerCode;
 
-
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(mappedBy = "customer",fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST,CascadeType.REMOVE} )
     List<Contract> contractList;
 
     @ManyToOne

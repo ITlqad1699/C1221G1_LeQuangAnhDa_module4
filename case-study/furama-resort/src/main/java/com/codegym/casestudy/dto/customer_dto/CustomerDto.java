@@ -1,10 +1,12 @@
 package com.codegym.casestudy.dto.customer_dto;
 
-import com.codegym.casestudy.dto.contract_dto.ContractDto;
+import com.codegym.casestudy.model.customer.CustomerType;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 
 import java.util.List;
 
-public class CustomerDto {
+public class CustomerDto implements Validator {
     private Integer id;
     private String idCard;
     private String name;
@@ -14,10 +16,18 @@ public class CustomerDto {
     private String address;
     private Integer gender;
     private String customerCode;
-    List<ContractDto> contractDtoList;
-    private CustomerDto customerDto;
+    private List<String> customerCodeList;
+    private CustomerType customerType;
 
     public CustomerDto() {
+    }
+
+    public List<String> getCustomerCodeList() {
+        return customerCodeList;
+    }
+
+    public void setCustomerCodeList(List<String> customerCodeList) {
+        this.customerCodeList = customerCodeList;
     }
 
     public Integer getId() {
@@ -92,19 +102,21 @@ public class CustomerDto {
         this.customerCode = customerCode;
     }
 
-    public List<ContractDto> getContractDtoList() {
-        return contractDtoList;
+    public CustomerType getCustomerType() {
+        return customerType;
     }
 
-    public void setContractDtoList(List<ContractDto> contractDtoList) {
-        this.contractDtoList = contractDtoList;
+    public void setCustomerType(CustomerType customerType) {
+        this.customerType = customerType;
     }
 
-    public CustomerDto getCustomerDto() {
-        return customerDto;
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return false;
     }
 
-    public void setCustomerDto(CustomerDto customerDto) {
-        this.customerDto = customerDto;
+    @Override
+    public void validate(Object target, Errors errors) {
+
     }
 }

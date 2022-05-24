@@ -3,7 +3,6 @@ package com.codegym.casestudy.model.contract;
 import com.codegym.casestudy.model.customer.Customer;
 import com.codegym.casestudy.model.employee.Employee;
 import com.codegym.casestudy.model.service.Service;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -21,7 +20,7 @@ public class Contract {
     @Column(name = "total_money")
     private String totalMoney;
 
-    @OneToMany(mappedBy = "contract")
+    @OneToMany(mappedBy = "contract",fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
     private List<ContractDetail> contractDetailList;
 
     @ManyToOne

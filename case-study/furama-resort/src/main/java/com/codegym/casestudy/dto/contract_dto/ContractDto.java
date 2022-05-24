@@ -1,11 +1,9 @@
 package com.codegym.casestudy.dto.contract_dto;
 
 import com.codegym.casestudy.dto.customer_dto.CustomerDto;
-import com.codegym.casestudy.dto.employee_dto.EmployeeDto;
 import com.codegym.casestudy.dto.service_dto.ServiceDto;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
-import java.util.List;
 
 public class ContractDto implements Validator {
     private Integer id;
@@ -13,26 +11,17 @@ public class ContractDto implements Validator {
     private String dateEnd;
     private String deposit;
     private String totalMoney;
-    private List<ContractDetailDto> contractDetailDtoList;
-    private EmployeeDto employeeDto;
+    private com.codegym.casestudy.dto.employee_dto.EmployeeDto employeeDto;
     private CustomerDto customerDto;
     private ServiceDto serviceDto;
     public ContractDto() {
     }
 
-    public List<ContractDetailDto> getContractDetailDtoList() {
-        return contractDetailDtoList;
-    }
-
-    public void setContractDetailDtoList(List<ContractDetailDto> contractDetailDtoList) {
-        this.contractDetailDtoList = contractDetailDtoList;
-    }
-
-    public EmployeeDto getEmployeeDto() {
+    public com.codegym.casestudy.dto.employee_dto.EmployeeDto getEmployeeDto() {
         return employeeDto;
     }
 
-    public void setEmployeeDto(EmployeeDto employeeDto) {
+    public void setEmployeeDto(com.codegym.casestudy.dto.employee_dto.EmployeeDto employeeDto) {
         this.employeeDto = employeeDto;
     }
 
