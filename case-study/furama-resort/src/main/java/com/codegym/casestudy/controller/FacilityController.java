@@ -34,7 +34,7 @@ public class FacilityController {
 
     @GetMapping("/goCreate")
     public String goCreateCustomer(Model model) {
-        model.addAttribute("facilityDto", new ServiceDto());
+        model.addAttribute("serviceDto", new ServiceDto());
         model.addAttribute("rentType",this.iRentTypeService.findAll());
         model.addAttribute("serviceType", this.iServiceType.findAll());
         //tới đây
@@ -45,8 +45,8 @@ public class FacilityController {
     public String createFacility(@ModelAttribute @Validated ServiceDto serviceDto,
                                  BindingResult bindingResult,
                                  Model model){
-//        customerDto.setCustomerCodeList(this.iFacilityService.getCustomerCode());
-        new CustomerDto().validate(serviceDto,bindingResult);
+        new ServiceDto().validate(serviceDto,bindingResult);
+        this.iFacilityService.checkExists(serviceDto,bindingResult);
         if(bindingResult.hasFieldErrors()){
             model.addAttribute("rentType",this.iRentTypeService.findAll());
             model.addAttribute("serviceType", this.iServiceType.findAll());

@@ -1,8 +1,6 @@
 package com.codegym.casestudy.controller;
 
-import com.codegym.casestudy.dto.customer_dto.CustomerDto;
 import com.codegym.casestudy.dto.employee_dto.EmployeeDto;
-import com.codegym.casestudy.model.customer.Customer;
 import com.codegym.casestudy.model.employee.Employee;
 import com.codegym.casestudy.service.interface_employee.IDivisionService;
 import com.codegym.casestudy.service.interface_employee.IEducationDegreeService;
@@ -64,7 +62,7 @@ public class EmployeeController {
         model.addAttribute("position", this.iPositionService.findAll());
         model.addAttribute("division", this.iDivisionService.findAll());
         model.addAttribute("education", this.iEducationDegreeService.findAll());
-        model.addAttribute("employees", this.iEmployeeService.findAll(keywordName, divisionKey, positionKey, educationDegreeKey, pageable));
+        model.addAttribute("employees", this.iEmployeeService.findAllEmployee(keywordName, divisionKey, positionKey, educationDegreeKey, pageable));
 //        model.addAttribute("employees", this.iEmployeeService.findAllBy());
         model.addAttribute("keywordName", keywordName);
         model.addAttribute("positionKey", positionKey);
@@ -88,7 +86,9 @@ public class EmployeeController {
     public String createEmployee(@ModelAttribute @Validated EmployeeDto employeeDto,
                                  BindingResult bindingResult,
                                  Model model) {
+        Integer flag = 1;
         new EmployeeDto().validate(employeeDto, bindingResult);
+        this.iEmployeeService.checkExists(employeeDto,bindingResult);
         if (bindingResult.hasFieldErrors()) {
             model.addAttribute("positions", this.iPositionService.findAll());
             model.addAttribute("divisions", this.iDivisionService.findAll());
@@ -97,53 +97,63 @@ public class EmployeeController {
         } else {
             Employee employee = new Employee();
             BeanUtils.copyProperties(employeeDto, employee);
+            employee.setFlag(flag);
             this.iEmployeeService.save(employee);
             return "redirect:/employee";
         }
     }
 
     @GetMapping("/detail")
-    public String goDetail(@RequestParam Integer id,Model model){
+    public String goDetail(@RequestParam Integer id, Model model) {
         Employee employee = this.iEmployeeService.findById(id);
         EmployeeDto employeeDto = new EmployeeDto();
-        BeanUtils.copyProperties(employee,employeeDto);
-        model.addAttribute("employeeDto",employeeDto);
+        BeanUtils.copyProperties(employee, employeeDto);
+        model.addAttribute("employeeDto", employeeDto);
         return "employee/detail_employee";
     }
 
     @GetMapping("edit")
-    public String goEdit(@RequestParam Integer id, Model model){
+    public String goEdit(@RequestParam Integer id, Model model) {
         Employee employee = this.iEmployeeService.findById(id);
         EmployeeDto employeeDto = new EmployeeDto();
-        BeanUtils.copyProperties(employee,employeeDto);
-        model.addAttribute("employeeDto",employeeDto);
+        BeanUtils.copyProperties(employee, employeeDto);
+        model.addAttribute("employeeDto", employeeDto);
         model.addAttribute("positions", this.iPositionService.findAll());
         model.addAttribute("divisions", this.iDivisionService.findAll());
         model.addAttribute("educations", this.iEducationDegreeService.findAll());
         return "employee/edit_employee";
     }
+
     @PostMapping("/update")
     public String update(@ModelAttribute @Validated EmployeeDto employeeDto,
                          BindingResult bindingResult,
-                         Model model){
-//        employeeDto.setCustomerCodeList(this.customerService.getCustomerCode());
-        new EmployeeDto().validate(employeeDto,bindingResult);
-        if(bindingResult.hasFieldErrors()){
+                         Model model) {
+        Integer flag = 1;
+        new EmployeeDto().validate(employeeDto, bindingResult);
+        this.iEmployeeService.checkExists(employeeDto,bindingResult);
+        if (bindingResult.hasFieldErrors()) {
             model.addAttribute("positions", this.iPositionService.findAll());
             model.addAttribute("divisions", this.iDivisionService.findAll());
             model.addAttribute("educations", this.iEducationDegreeService.findAll());
             return "employee/edit_employee";
-        }else{
+        } else {
             Employee employee = new Employee();
-            BeanUtils.copyProperties(employeeDto,employee);
+            employee.setFlag(flag);
+            BeanUtils.copyProperties(employeeDto, employee);
             this.iEmployeeService.save(employee);
             return "redirect:/employee";
         }
     }
 
     @PostMapping("/delete")
-    public String delete(@RequestParam Integer id, Model model){
+    public String delete(@RequestParam Integer id, Model model) {
         this.iEmployeeService.softDelete(id);
+        return "redirect:/employee";
+    }
+
+    @GetMapping("/delete_check")
+    public String deleteCheck(@RequestParam("cid") Integer[] idCheck) {
+        this.iEmployeeService.deleteCheck(idCheck);
         return "redirect:/employee";
     }
 }

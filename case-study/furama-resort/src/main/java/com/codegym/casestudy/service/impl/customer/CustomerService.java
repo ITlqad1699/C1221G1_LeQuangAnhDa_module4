@@ -1,5 +1,6 @@
 package com.codegym.casestudy.service.impl.customer;
 
+import com.codegym.casestudy.dto.customer_dto.CustomerDtoJoin;
 import com.codegym.casestudy.model.customer.Customer;
 import com.codegym.casestudy.repository.customer.ICustomerRepository;
 import com.codegym.casestudy.service.interface_customer.ICustomerService;
@@ -18,11 +19,6 @@ public class CustomerService implements ICustomerService {
     @Override
     public Page<Customer> findAllByName(String keywordName, Pageable pageable) {
         return this.iCustomerRepository.findAllByNameContaining(keywordName, pageable);
-    }
-
-    @Override
-    public List<String> getCustomerCode() {
-        return this.iCustomerRepository.getCustomerCode();
     }
 
     @Override
@@ -51,7 +47,38 @@ public class CustomerService implements ICustomerService {
     }
 
     @Override
+    public List<Customer> findAll() {
+        return this.iCustomerRepository.findAll();
+    }
+
+    @Override
     public Page<Customer> findAllByNameCodeType(String keywordName, String keywordCode, String keywordType, Pageable pageable) {
         return this.iCustomerRepository.findAllByNameCodeType("%" + keywordName + "%", "%" + keywordCode + "%", keywordType, pageable);
     }
+
+    @Override
+    public Page<CustomerDtoJoin> findCustomerBooking(Pageable pageable) {
+        return this.iCustomerRepository.findCustomerJoin(pageable);
+    }
+
+    @Override
+    public List<String> getCustomerCode() {
+        return this.iCustomerRepository.getCustomerCode();
+    }
+    @Override
+    public List<String> getEmail() {
+        return this.iCustomerRepository.getEmail();
+    }
+
+    @Override
+    public List<String> getPhone() {
+        return this.iCustomerRepository.getPhone();
+    }
+
+    @Override
+    public List<String> getIdCard() {
+        return this.iCustomerRepository.getIdCard();
+    }
+
+
 }

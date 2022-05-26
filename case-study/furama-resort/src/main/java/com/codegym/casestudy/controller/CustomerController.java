@@ -1,5 +1,6 @@
 package com.codegym.casestudy.controller;
 
+
 import com.codegym.casestudy.dto.customer_dto.CustomerDto;
 import com.codegym.casestudy.model.customer.Customer;
 import com.codegym.casestudy.service.interface_customer.ICustomerService;
@@ -14,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.Optional;
 
 @Controller
@@ -70,6 +72,9 @@ public class CustomerController {
                                  BindingResult bindingResult,
                                  Model model){
         customerDto.setCustomerCodeList(this.customerService.getCustomerCode());
+        customerDto.setEmailList(this.customerService.getEmail());
+        customerDto.setPhoneList(this.customerService.getPhone());
+        customerDto.setIdCardList(this.customerService.getIdCard());
         new CustomerDto().validate(customerDto,bindingResult);
         if(bindingResult.hasFieldErrors()){
             model.addAttribute("customerTypes", this.customerTypeService.findAll());
@@ -123,6 +128,28 @@ public class CustomerController {
             return "redirect:/customer";
         }
     }
-
+    @GetMapping("customer-have-booking")
+    public String goCustomerHaveBooking(Model model,
+                                        @RequestParam(defaultValue = "0") Integer page,
+                                        @RequestParam(defaultValue = "3") Integer pageSize,
+                                        @RequestParam Optional<String> sort,
+                                        @RequestParam Optional<String> dir,
+                                        @RequestParam Optional<String> name){
+        Pageable pageable;
+        String dirVal = dir.orElse("");
+        String sortVal = sort.orElse("");
+        String keywordName = name.orElse("");
+        if ("".equals(sortVal)) {
+            pageable = PageRequest.of(page, pageSize);
+        } else {
+            if ("asc".equals(dirVal)) {
+                pageable = PageRequest.of(page, pageSize, Sort.by(sortVal).ascending());
+            } else {
+                pageable = PageRequest.of(page, pageSize, Sort.by(sortVal).descending());
+            }
+        }
+        model.addAttribute("customerDtoJoins",   this.customerService.findCustomerBooking(pageable));
+        return "customer/customer_have_booking";
+    }
 
 }

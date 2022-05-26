@@ -6,11 +6,13 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
+import javax.validation.GroupSequence;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
 
+@GroupSequence({UserDto.class, BasicInfo.class, AdvanceInfo.class})
 public class UserDto implements Validator {
 
     private Integer id;
@@ -20,8 +22,8 @@ public class UserDto implements Validator {
     @NotEmpty(message = "day of birth is not null")
     private String dayOfBirth;
     private String phoneNumber;
-    @Email(message = "email is not valid")
-    @NotBlank(message = "email is not empty")
+    @Email(message = "email is not valid",groups = AdvanceInfo.class)
+    @NotBlank(message = "email is not empty",groups = BasicInfo.class)
     private String email;
 
     public UserDto() {

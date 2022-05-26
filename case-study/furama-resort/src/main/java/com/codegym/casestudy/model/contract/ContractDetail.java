@@ -3,13 +3,13 @@ package com.codegym.casestudy.model.contract;
 import javax.persistence.*;
 
 @Entity
-@Table(name="contract_detail")
+@Table(name = "contract_detail")
 public class ContractDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "contract_detail_id")
     private Integer id;
-    private String Quantity;
+    private String quantity;
 
     @ManyToOne
     @JoinColumn(name = "attact_service_id", referencedColumnName = "attact_service_id")
@@ -19,21 +19,16 @@ public class ContractDetail {
     @JoinColumn(name = "contract_id", referencedColumnName = "contract_id")
     private Contract contract;
 
+
+    public ContractDetail() {
+    }
+
     public Contract getContract() {
         return contract;
     }
 
     public void setContract(Contract contract) {
         this.contract = contract;
-    }
-
-    public ContractDetail(Integer id, String quantity, AttachService attachService) {
-        this.id = id;
-        Quantity = quantity;
-        this.attachService = attachService;
-    }
-
-    public ContractDetail() {
     }
 
     public Integer getId() {
@@ -45,11 +40,11 @@ public class ContractDetail {
     }
 
     public String getQuantity() {
-        return Quantity;
+        return quantity;
     }
 
     public void setQuantity(String quantity) {
-        Quantity = quantity;
+        this.quantity = quantity;
     }
 
     public AttachService getAttachService() {

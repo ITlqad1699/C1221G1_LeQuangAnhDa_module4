@@ -1,39 +1,41 @@
 package com.codegym.casestudy.dto.contract_dto;
 
+import com.codegym.casestudy.model.contract.AttachService;
+import com.codegym.casestudy.model.contract.Contract;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 public class ContractDetailDto implements Validator {
     private Integer id;
-    private String Quantity;
-    private AttachServiceDto attachServiceDto;
-    private ContractDto contractDto;
+    private String quantity;
+    private AttachService attachService;
+    private Contract contract;
     public ContractDetailDto() {
     }
 
     public ContractDetailDto(Integer id, String quantity) {
         this.id = id;
-        Quantity = quantity;
+        this.quantity = quantity;
     }
 
     public Integer getId() {
         return id;
     }
 
-    public AttachServiceDto getAttachServiceDto() {
-        return attachServiceDto;
+    public AttachService getAttachService() {
+        return attachService;
     }
 
-    public void setAttachServiceDto(AttachServiceDto attachServiceDto) {
-        this.attachServiceDto = attachServiceDto;
+    public void setAttachService(AttachService attachService) {
+        this.attachService = attachService;
     }
 
-    public ContractDto getContractDto() {
-        return contractDto;
+    public Contract getContract() {
+        return contract;
     }
 
-    public void setContractDto(ContractDto contractDto) {
-        this.contractDto = contractDto;
+    public void setContract(Contract contract) {
+        this.contract = contract;
     }
 
     public void setId(Integer id) {
@@ -41,11 +43,11 @@ public class ContractDetailDto implements Validator {
     }
 
     public String getQuantity() {
-        return Quantity;
+        return quantity;
     }
 
     public void setQuantity(String quantity) {
-        Quantity = quantity;
+        this.quantity = quantity;
     }
 
     @Override

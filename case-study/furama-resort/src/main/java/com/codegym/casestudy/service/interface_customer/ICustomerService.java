@@ -1,5 +1,6 @@
 package com.codegym.casestudy.service.interface_customer;
 
+import com.codegym.casestudy.dto.customer_dto.CustomerDtoJoin;
 import com.codegym.casestudy.model.customer.Customer;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,5 +22,16 @@ public interface ICustomerService {
 
     void deleteById(Integer id);
 
+    List<Customer> findAll();
+
     Page<Customer> findAllByNameCodeType(String keywordName, String keywordCode, String keywordType, Pageable pageable);
+
+
+    Page<CustomerDtoJoin> findCustomerBooking(Pageable pageable);
+
+    List<String> getEmail();
+
+    List<String> getPhone();
+
+    List<String> getIdCard();
 }

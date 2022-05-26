@@ -1,16 +1,12 @@
 package com.codegym.casestudy.service.interface_contract;
 
 import com.codegym.casestudy.model.contract.Contract;
+import com.codegym.casestudy.model.contract.ContractDetail;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.util.List;
+public interface IContractDetailService {
+    Page<ContractDetail> findAll(Pageable pageable);
 
-public interface IContractService {
-    List<Contract> findAll();
-
-
-    Page<Contract> findAllBy(Pageable pageable);
-
-    void save(Contract contract);
+    void save(ContractDetail contractDetail);
 }

@@ -7,40 +7,42 @@
 </head>
 <body>
 <!--===========Nav Bar=================-->
-<section class="nav-bar">
-    <div class="logo"><a th:href="@{/}" style="text-decoration: none;color:  #FDE02F">Dreaming Resort</a></div>
-    <ul class="menu">
-        <li><a href="#">home</a></li>
-        <li><a th:href="@{/employee}">employee</a></li>
-        <li><a th:href="@{/customer}">customer</a></li>
-        <li><a th:href="@{/contract}">contract</a></li>
-        <li><a th:href="@{/facility}">facility</a></li>
-        <li><a href="#">about us</a></li>
-        <li><a href="#">contact us</a></li>
-    </ul>
-    </div>
-
-</section>
-<!--===============Banner================-->
-<section class="banner">
-    <div class="banner-text-item">
-        <div class="banner-heading">
-            <h1>Here We Go</h1>
+<th:block th:fragment="header-nav-bar">
+    <section class="nav-bar">
+        <div class="logo"><a th:href="@{/}" style="text-decoration: none;color:  #FDE02F">Dreaming Resort</a></div>
+        <ul class="menu">
+            <li><a href="/">home</a></li>
+            <li><a th:href="@{/employee}">employee</a></li>
+            <li><a th:href="@{/customer}">customer</a></li>
+            <li><a th:href="@{/contract}">contract</a></li>
+            <li><a th:href="@{/facility}">facility</a></li>
+            <li><a th:href="@{/contractDetail}">contract detail</a></li>
+            <li><a th:href="@{/customer/customer-have-booking}">customer booking</a></li>
+            <!--        <li><a href="#">contact us</a></li>-->
+        </ul>
         </div>
-        <form class="form">
-            <input type="text" list="mylist" placeholder="Choose Service Type">
-            <datalist id="mylist">
-                <option>Villa</option>
-                <option>House</option>
-                <option>Room</option>
-            </datalist>
-            <input type="date" class="date">
-            <input type="date" class="date">
-            <a href="#" class="book">book</a>
-        </form>
-    </div>
-</section>
-
+    </section>
+<!--===============Banner================-->
+    <section class="banner">
+        <div class="banner-text-item">
+            <div class="banner-heading">
+                <h1>Here We Go</h1>
+            </div>
+            <form class="form">
+                <input type="text" list="mylist" placeholder="Choose Service Type">
+                <datalist id="mylist">
+                    <option>Villa</option>
+                    <option>House</option>
+                    <option>Room</option>
+                </datalist>
+                <input type="date" class="date">
+                <input type="date" class="date">
+                <a href="#" class="book">book</a>
+            </form>
+        </div>
+    </section>
+</th:block>
+<th:block th:fragment="footer-body">
 <!--=========Services===============-->
 <section class="services">
     <div class="service-item">
@@ -227,6 +229,7 @@
         </ul>
     </div>
 </div>
+</th:block>
 
 </body>
 </html>

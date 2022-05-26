@@ -1,22 +1,56 @@
 package com.codegym.casestudy.dto.customer_dto;
 
 import com.codegym.casestudy.model.customer.CustomerType;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.validation.Errors;
+import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
-
+import javax.validation.GroupSequence;
+import javax.validation.constraints.*;
+import java.time.LocalDate;
 import java.util.List;
 
+//@GroupSequence({CustomerDto.class, BasicInfo.class, AdvanceInfo.class})
 public class CustomerDto implements Validator {
+
     private Integer id;
+
+    @NotBlank(message = "*Not blank")
+    @Pattern(regexp = "[0-9]{9}",message ="*format error" )
     private String idCard;
+
+    @NotBlank(message = "*Please input name")
+    @Pattern(regexp = "[A-Za-z ]+", message = "*Wrong format name")
     private String name;
+
+    @Pattern(regexp = "^((2000|2400|2800|(19|2[0-9])(0[48]|[2468][048]|[13579][26]))-02-29)$", message = "*wrong date time")
+    @NotBlank(message = "*day of birth is not null")
     private String birthDay;
+
     private String phone;
+
+    @Email(message = "*email is not valid")
+    @NotBlank(message = "*not blank")
     private String email;
+
+    @NotBlank(message = "*not blank")
     private String address;
+
+    @NotNull(message = "*choose gender")
     private Integer gender;
+
+    @NotBlank(message = "*not blank")
     private String customerCode;
+
     private List<String> customerCodeList;
+
+    private List<String> phoneList;
+
+    private List<String> idCardList;
+
+    private List<String> emailList;
+
+    @NotNull(message = "*choose customer type")
     private CustomerType customerType;
 
     public CustomerDto() {
@@ -56,6 +90,30 @@ public class CustomerDto implements Validator {
 
     public String getBirthDay() {
         return birthDay;
+    }
+
+    public List<String> getPhoneList() {
+        return phoneList;
+    }
+
+    public void setPhoneList(List<String> phoneList) {
+        this.phoneList = phoneList;
+    }
+
+    public List<String> getIdCardList() {
+        return idCardList;
+    }
+
+    public void setIdCardList(List<String> idCardList) {
+        this.idCardList = idCardList;
+    }
+
+    public List<String> getEmailList() {
+        return emailList;
+    }
+
+    public void setEmailList(List<String> emailList) {
+        this.emailList = emailList;
     }
 
     public void setBirthDay(String birthDay) {
@@ -117,6 +175,50 @@ public class CustomerDto implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
+        CustomerDto customerDto = (CustomerDto) target;
+        String phone = customerDto.getPhone();
 
+        //validate day:
+        if(!"".equals(customerDto.getBirthDay())){
+            LocalDate date = LocalDate.parse(customerDto.getBirthDay());
+            if((LocalDate.now().minusYears(18)).isBefore(date)){
+                errors.rejectValue("birthDay","date.valid","errors");
+            }
+        }
+
+
+        //validate phone:
+        //        ValidationUtils.rejectIfEmpty(errors, "phone", "phone.empty","errors");
+        if(phone.isEmpty()){
+            errors.rejectValue("phone", "phone.empty", "errors");
+        } else if (phone.length() > 12 || phone.length() < 10) {
+            errors.rejectValue("phone", "phone.length", "errors");
+        } else if (!phone.startsWith("0")) {
+            errors.rejectValue("phone", "phone.startsWith", "errors");
+        } else if (!phone.matches("(^$|[0-9]*$)")) {
+            errors.rejectValue("phone", "phone.matches","errors");
+        }
+        if(!customerDto.getCustomerCode().matches("(^KH-[0-9]{4}$)")){
+            errors.rejectValue("customerCode","code.format","errors");
+        }
+        //validate phone duplicate
+        if(customerDto.getPhoneList().contains(customerDto.getPhone())){
+            errors.rejectValue("phone","phone.duplicate","errors");
+        }
+
+        //validate code
+        if(customerDto.getCustomerCodeList().contains(customerDto.getCustomerCode())){
+            errors.rejectValue("customerCode","code.duplicate","errors");
+        }
+
+        //validate email
+        if(customerDto.getEmailList().contains(customerDto.getEmail())){
+            errors.rejectValue("email","email.duplicate","errors");
+        }
+
+        //validate idcard
+        if(customerDto.getIdCardList().contains(customerDto.getIdCard())){
+            errors.rejectValue("idCard","id.card.duplicate","errors");
+        }
     }
 }

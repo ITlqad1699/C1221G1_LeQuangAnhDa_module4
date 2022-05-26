@@ -9,6 +9,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 public interface IEmployeeRepository extends JpaRepository<Employee, Integer> {
 
     @Query(value = " select * from employee where `name` like :searchName and division_id " +
@@ -27,4 +29,17 @@ public interface IEmployeeRepository extends JpaRepository<Employee, Integer> {
     @Query(value = "update employee set flag = 0 where employee_id = :idDelete",
             nativeQuery = true)
     void softDelete(@Param("idDelete") Integer id);
+
+    @Modifying
+    @Transactional
+    @Query(value = "update employee set flag = 0 where employee_id in (?1)",
+            nativeQuery = true)
+    void deleteCheck(List<Integer> asList);
+
+
+    Employee findFirstByEmail(String email);
+
+    Employee findFirstByPhone(String phone);
+
+    Employee findFirstByIdCard(String idCard);
 }

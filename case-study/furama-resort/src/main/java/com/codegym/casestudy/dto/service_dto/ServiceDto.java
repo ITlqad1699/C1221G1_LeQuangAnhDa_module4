@@ -1,24 +1,44 @@
 package com.codegym.casestudy.dto.service_dto;
 
 import com.codegym.casestudy.dto.contract_dto.ContractDto;
+import com.codegym.casestudy.dto.customer_dto.AdvanceInfo;
+import com.codegym.casestudy.dto.customer_dto.BasicInfo;
 import com.codegym.casestudy.model.service.RentType;
 import com.codegym.casestudy.model.service.ServiceType;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 
+import javax.validation.GroupSequence;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
-public class ServiceDto {
+@GroupSequence({ServiceDto.class,BasicInfo.class,AdvanceInfo.class})
+public class ServiceDto implements Validator {
+
     private Integer id;
+    @NotBlank(message = "*enter name")
     private String name;
+    @NotBlank(message = "*enter area")
     private String area;
+    @NotBlank(message = "*enter cost")
     private String cost;
+    @NotBlank(message = "not null")
     private String maxPeople;
+    @NotBlank(message = "not null")
     private String standardRoom;
+    @NotBlank(message = "not null")
     private String otherConvenience;
+    @NotBlank(message = "not null")
     private String poolArea;
+    @NotBlank(message = "not null")
     private String numOfFloor;
+    @NotBlank(message = "not null")
     private String serviceCode;
     List<ContractDto> contractDtoList;
+    @NotNull(message = "choose service type")
     private ServiceType serviceType;
+    @NotNull(message = "choose rent type")
     private RentType rentType;
 
     public ServiceDto() {
@@ -126,5 +146,16 @@ public class ServiceDto {
 
     public void setRentType(RentType rentType) {
         this.rentType = rentType;
+    }
+
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return false;
+    }
+
+    @Override
+    public void validate(Object target, Errors errors) {
+        ServiceDto serviceDto = (ServiceDto) target;
+
     }
 }
