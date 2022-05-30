@@ -38,7 +38,7 @@
                     </div>
                     <div class="col">
                         <select th:field="*{contract}" class="form-select">
-                            <option value="">contract id</option>
+                            <option value="">customer</option>
                             <option th:each="item :${contract}"
                                     th:value="${item.id}"
                                     th:text="${item.id}">
@@ -55,7 +55,6 @@
 
     </div>
 </div>
-
 <th:block th:replace="home :: footer-body"></th:block>
 <th:block th:replace="layout :: link-md-boostrap-js"></th:block>
 </body>

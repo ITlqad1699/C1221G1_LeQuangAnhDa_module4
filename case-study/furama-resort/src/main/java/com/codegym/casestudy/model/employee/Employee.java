@@ -1,6 +1,7 @@
 package com.codegym.casestudy.model.employee;
 
 import com.codegym.casestudy.model.contract.Contract;
+import com.codegym.casestudy.model.user.AppUser;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -22,6 +23,8 @@ public class Employee {
     private String email;
     private String address;
 
+
+
     @JsonIgnore
     private Integer flag;
 //    private String username;
@@ -41,7 +44,19 @@ public class Employee {
     @JoinColumn(name = "education_degree_id", referencedColumnName = "education_degree_id")
     private EducationDegree educationDegree;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id",referencedColumnName = "id")
+    private AppUser user;
+
     public Employee() {
+    }
+
+    public AppUser getUser() {
+        return user;
+    }
+
+    public void setUser(AppUser user) {
+        this.user = user;
     }
 
     public Integer getFlag() {

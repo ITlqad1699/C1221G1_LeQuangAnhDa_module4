@@ -20,6 +20,11 @@ public class MainController {
         return "welcomePage";
     }
 
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String loginPage(Model model) {
+
+        return "loginPage";
+    }
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String adminPage(Model model, Principal principal) {
 
@@ -31,11 +36,7 @@ public class MainController {
         return "adminPage";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String loginPage(Model model) {
 
-        return "loginPage";
-    }
 
     @RequestMapping(value = "/logoutSuccessful", method = RequestMethod.GET)
     public String logoutSuccessfulPage(Model model) {

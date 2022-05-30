@@ -2,7 +2,13 @@ package com.codegym.casestudy.service.impl.employee;
 
 import com.codegym.casestudy.dto.employee_dto.EmployeeDto;
 import com.codegym.casestudy.model.employee.Employee;
+import com.codegym.casestudy.model.user.AppRole;
+import com.codegym.casestudy.model.user.AppUser;
 import com.codegym.casestudy.repository.employee.IEmployeeRepository;
+import com.codegym.casestudy.repository.user.AppUserRepository;
+import com.codegym.casestudy.service.IAppRoleService;
+import com.codegym.casestudy.service.IAppUserService;
+import com.codegym.casestudy.service.IUserRoleService;
 import com.codegym.casestudy.service.interface_employee.IEmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,7 +22,13 @@ import java.util.List;
 @Service
 public class EmployeeService implements IEmployeeService {
     @Autowired
-    IEmployeeRepository iEmployeeRepository;
+    private AppUserRepository appUserRepository;
+    @Autowired
+    private IAppRoleService iAppRoleService;
+    @Autowired
+    private IUserRoleService iUserRoleService;
+    @Autowired
+    private IEmployeeRepository iEmployeeRepository;
 
     @Override
     public Page<Employee> findAllEmployee(String keywordName, String divisionKey, String positionKey, String educationKey, Pageable pageable) {
@@ -30,7 +42,18 @@ public class EmployeeService implements IEmployeeService {
 
     @Override
     public void save(Employee employee) {
-        this.iEmployeeRepository.save(employee);
+        // goi cac phuong thuc lien quan toi dang ky user
+        // dang ky user cho employee
+        AppUser appUser = this.appUserRepository.findByUsername(employee.getEmail());
+        if(appUser == null){
+            AppUser employeeUser = new AppUser();
+            this.iUserRoleService.saveUser(employee, employeeUser);
+            AppRole userRole = this.iAppRoleService.findRole(1);
+            AppRole adminRole = this.iAppRoleService.findRole(2);
+            this.iUserRoleService.saveUserRole(employee, employeeUser, userRole, adminRole);
+        }
+            employee.setFlag(1);
+            this.iEmployeeRepository.save(employee);
     }
 
     @Override

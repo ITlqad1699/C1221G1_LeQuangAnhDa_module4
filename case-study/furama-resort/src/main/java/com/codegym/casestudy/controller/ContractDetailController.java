@@ -36,7 +36,7 @@ public class ContractDetailController {
     @GetMapping()
     public String goContractDetail(Model model,
                                    @RequestParam(defaultValue = "0") Integer page,
-                                   @RequestParam(defaultValue = "3") Integer pageSize,
+                                   @RequestParam(defaultValue = "4") Integer pageSize,
                                    @RequestParam Optional<String> sort,
                                    @RequestParam Optional<String> dir){
         Pageable pageable;

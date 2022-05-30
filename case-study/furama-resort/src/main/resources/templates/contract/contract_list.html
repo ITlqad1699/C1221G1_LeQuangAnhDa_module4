@@ -48,10 +48,11 @@
     </tr>
     <tr>
         <th class="col-1 text-center px-0">No</th>
+        <th class="col-1 text-center px-0">id</th>
         <th class="col-1 text-center px-0">dateStart</th>
         <th class="col-1 text-center px-0">dateEnd</th>
         <th class="col-1 text-center px-0">deposit</th>
-<!--        <th class="col-1">totalMoney</th>-->
+        <th class="col-1 text-center px-0">totalMoney</th>
         <th class="col-1 text-center px-0">employee</th>
         <th class="col-1 text-center px-0">customer</th>
         <th class="col-1 text-center px-0">service</th>
@@ -67,9 +68,13 @@
     <tbody>
     <tr th:each="row,rowStat : ${contracts}">
         <td th:text="${rowStat.count}" class="text-center px-0"></td>
+        <td th:text="${row.id}" class="text-center px-0"></td>
         <td th:text="${row.dateStart}" class="text-center px-0"></td>
         <td th:text="${row.dateEnd}" class="text-center px-0"></td>
         <td th:text="${row.deposit}" class="text-center px-0"></td>
+        <th:block th:each="cost : ${sumService}" >
+            <td th:if="${cost.contractId == row.id}" th:text="${cost.cost}" class="text-center px-0"></td>
+        </th:block>
         <td th:text="${row.employee.name}" class="text-center px-0"></td>
         <td th:text="${row.customer.name}" class="text-center px-0"></td>
         <td th:text="${row.service.name}" class="text-center px-1"></td>

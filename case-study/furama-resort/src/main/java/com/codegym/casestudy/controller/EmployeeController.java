@@ -2,6 +2,9 @@ package com.codegym.casestudy.controller;
 
 import com.codegym.casestudy.dto.employee_dto.EmployeeDto;
 import com.codegym.casestudy.model.employee.Employee;
+import com.codegym.casestudy.service.IAppRoleService;
+import com.codegym.casestudy.service.IAppUserService;
+import com.codegym.casestudy.service.IUserRoleService;
 import com.codegym.casestudy.service.interface_employee.IDivisionService;
 import com.codegym.casestudy.service.interface_employee.IEducationDegreeService;
 import com.codegym.casestudy.service.interface_employee.IEmployeeService;
@@ -22,7 +25,12 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/employee")
 public class EmployeeController {
-
+    @Autowired
+    private IAppRoleService iAppRoleService;
+    @Autowired
+    private IAppUserService iAppUserService;
+    @Autowired
+    private IUserRoleService iUserRoleService;
     @Autowired
     private IEmployeeService iEmployeeService;
     @Autowired
@@ -86,7 +94,6 @@ public class EmployeeController {
     public String createEmployee(@ModelAttribute @Validated EmployeeDto employeeDto,
                                  BindingResult bindingResult,
                                  Model model) {
-        Integer flag = 1;
         new EmployeeDto().validate(employeeDto, bindingResult);
         this.iEmployeeService.checkExists(employeeDto,bindingResult);
         if (bindingResult.hasFieldErrors()) {
@@ -97,7 +104,6 @@ public class EmployeeController {
         } else {
             Employee employee = new Employee();
             BeanUtils.copyProperties(employeeDto, employee);
-            employee.setFlag(flag);
             this.iEmployeeService.save(employee);
             return "redirect:/employee";
         }
@@ -128,7 +134,6 @@ public class EmployeeController {
     public String update(@ModelAttribute @Validated EmployeeDto employeeDto,
                          BindingResult bindingResult,
                          Model model) {
-        Integer flag = 1;
         new EmployeeDto().validate(employeeDto, bindingResult);
         this.iEmployeeService.checkExists(employeeDto,bindingResult);
         if (bindingResult.hasFieldErrors()) {
@@ -138,7 +143,6 @@ public class EmployeeController {
             return "employee/edit_employee";
         } else {
             Employee employee = new Employee();
-            employee.setFlag(flag);
             BeanUtils.copyProperties(employeeDto, employee);
             this.iEmployeeService.save(employee);
             return "redirect:/employee";

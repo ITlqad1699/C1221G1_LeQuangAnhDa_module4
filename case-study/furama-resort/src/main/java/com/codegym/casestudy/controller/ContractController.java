@@ -54,6 +54,7 @@ public class ContractController {
             }
         }
         model.addAttribute("contracts", this.iContractService.findAllBy(pageable));
+        model.addAttribute("sumService",this.iCustomerService.findCustomerBooking(pageable));
         model.addAttribute("sortVal", sortVal);
         model.addAttribute("dirVal", dirVal);
         return "contract/contract_list";

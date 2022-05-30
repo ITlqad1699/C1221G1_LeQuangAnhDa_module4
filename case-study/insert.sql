@@ -110,6 +110,17 @@ value	(5, 2, 4),(8, 2, 5),
 --         group by  contract.contract_id;
 
 
+insert into user ( username,encryted_password) values ( 'user123', '$2a$10$PrI5Gk9L.tSZiW9FXhTS8O8Mz9E97k2FZbFvGFFaSsiTUIl.TCrFu');
+insert into user ( username,encryted_password) values ( 'user124', '$2a$10$PrI5Gk9L.tSZiW9FXhTS8O8Mz9E97k2FZbFvGFFaSsiTUIl.TCrFu');
 
+
+
+insert into `role` (role_id, role_name) values (1, 'ROLE_ADMIN');
+insert into `role` (role_id, role_name) values (2, 'ROLE_USER');
+
+
+insert into user_role (id, role_id, user_id) values (1, 1, 1);
+insert into user_role (id, role_id, user_id) values (2, 1, 2);
+insert into user_role (id, role_id, user_id) values (3, 2, 2);
 
         

@@ -34,7 +34,7 @@ public interface ICustomerRepository extends JpaRepository<Customer, Integer> {
                     "       contract_detail.quantity                                                        as quantity,\n" +
                     "       date_start                                                                      as dateStart,\n" +
                     "       date_end                                                                        as dateEnd,\n" +
-                    "       sum(COALESCE(contract_detail.quantity * attach_service.cost, 0) + service.cost) as cost\n" +
+                    "       sum(COALESCE(contract_detail.quantity * attach_service.cost, 0)) + service.cost as cost\n" +
                     "from customer\n" +
                     "         join contract on customer.id = contract.customer_id\n" +
                     "         join service on contract.service_id = service.id\n" +
@@ -49,7 +49,7 @@ public interface ICustomerRepository extends JpaRepository<Customer, Integer> {
                             "       contract_detail.quantity                                                        as quantity,\n" +
                             "       date_start                                                                      as dateStart,\n" +
                             "       date_end                                                                        as dateEnd,\n" +
-                            "       sum(COALESCE(contract_detail.quantity * attach_service.cost, 0) + service.cost) as cost\n" +
+                            "       sum(COALESCE(contract_detail.quantity * attach_service.cost, 0)) + service.cost as cost\n" +
                             "from customer\n" +
                             "         join contract on customer.id = contract.customer_id\n" +
                             "         join service on contract.service_id = service.id\n" +
