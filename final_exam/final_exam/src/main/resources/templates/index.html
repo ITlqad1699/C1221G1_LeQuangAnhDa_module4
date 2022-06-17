@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="layout :: link-md-boostrap-css"></th:block>
+    <style>
+        a.disable {
+            pointer-events: none;
+            cursor: default;
+        }
+    </style>
+    <style>
+        .more {
+            cursor: pointer;
+            border: none;
+            background: transparent;
+        }
+
+        .more span {
+            display: block;
+            width: .25rem;
+            height: .25rem;
+            background: #363636;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .more span:not(:last-child) {
+            margin-bottom: .125rem;
+        }
+
+        .dropout {
+            z-index: 9001;
+            width: fit-content;
+            position: relative;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .dropout ul {
+            position: absolute;
+            top: -1.1rem;
+            right: 1.5rem;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.12s ease;
+        }
+
+        .dropout.active ul {
+            padding: 5px;
+            background-color: white;
+            transform: scaleX(1);
+            border-radius: 5px;
+            min-width: 100px;
+        }
+
+        .dropout.active li {
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <th:block th:replace="layout :: header"></th:block>
+    <div class="my-2">
+        <form th:action="@{/product}" method="get" th:value="${order}">
+            <div class="input-group mx-3 col-7">
+                <div class="col-2">
+                    <span>ngày bắt đầu:</span>
+                    <input class="col form-control" id="formControlDefault" aria-label="Search" type="date"
+                           name="dateStart">
+                </div>
+
+                <div class="col-2">
+                    <span>ngày kết thúc:</span>
+                    <input class=" col form-control" id="formControlDefault1" aria-label="Search" type="date"
+                           name="dateEnd">
+                </div>
+            </div>
+            <button class="btn btn-light mx-3" type="submit">
+                <i class="fas fa-search"></i>
+            </button>
+            <div class="input-group m-3 col-5">
+                <div class="col-1">
+                    <select name="sort" class="form-control">
+                        <option value="">chọn top</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+                <button class="btn btn-dark my-2 my-sm-0" type="submit">
+                    xem
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <table id="product" class="table table-striped bg-light ">
+        <thead class="thead-dark bg-info">
+        <tr>
+            <th class="col-1 text-center px-0"><b>STT</b></th>
+            <th class="col-1 text-center px-0"><b>mã đơn hàng</b></th>
+            <th class="col-1 text-center px-0"><b>tên sản phẩm</b></th>
+            <th class="col-1 text-center px-0"><b>giá(USD)</b></th>
+            <th class="col-1 text-center px-0"><b>loại sản phẩm</b></th>
+            <th class="col-1 text-center px-0"><b>ngày mua</b></th>
+            <th class="col-1 text-center px-0"><b>số lượng</b></th>
+            <th class="col-1 text-center px-0"><b>tổng tiền</b></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="row,rowStat : ${order}">
+            <td th:text="${rowStat.count}" class="col-1 text-center"></td>
+            <td th:text="${row.orderId}" class="col-1 text-center px-1"></td>
+            <td th:text="${row.product.name}" class="col-1 text-center px-0"></td>
+            <td th:text="${row.product.price}" class="col-1 text-center px-0"></td>
+            <td th:text="${row.product.productType.productTypeName}" class="col-1 text-center px-1"></td>
+            <td th:text="${row.purchaseDate}" class="col-1 text-center px-0"></td>
+            <td th:text="${row.quantity}" class="col-1 text-center px-0"></td>
+            <td th:text="${(row.quantity)*(row.product.price)}" class="col-1 text-center px-0"></td>
+            <td class="col-1">
+                <div class="dropout">
+                    <button class="more" type="button">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a th:href="@{/product/edit(orderId=${row.orderId})}">
+                                <button type="button" class="btn btn-warning">
+                                    <i class="fas fa-pen-nib"></i>
+                                </button>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <button th:attr="onclick=|deleteModal(${row.orderId})|"
+                                    type="button" class="btn btn-danger" data-mdb-toggle="modal"
+                                    data-mdb-target="#exampleModal2">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <button th:attr="onclick=|detailModal(${row.orderId})|"
+                                    type="button" class="btn btn-primary" data-mdb-toggle="modal"
+                                    data-mdb-target="#exampleModal1">
+                                <i class="far fa-eye"></i>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <!--    </form>-->
+    <div class="row text-center">
+        <div class="col-lg-12 ">
+            <a th:attr="class=${!order.hasPrevious() ? 'disable' : ''} "
+               th:href="@{/product/(page=${order.number-1},
+            dateStart=${dateStartKey},
+            dateEnd=${dateEndKey},
+            sort=${sortVal},
+            dir=${dirVal})}">
+                <i class="fas fa-angle-left"></i>
+            </a>
+            <span th:text="${order.number+1}"></span>
+            /
+            <span th:text="${order.totalPages}"></span>
+            <a th:attr="class=${!order.hasNext() ? 'disable' : ''} "
+               th:href="@{/product/(page=${order.number+1},
+            dateStart=${dateStartKey},
+            dateEnd=${dateEndKey},
+            sort=${sortVal},
+            dir=${dirVal})}">
+                <i class="fas fa-chevron-right"></i>
+            </a>
+        </div>
+    </div>
+    <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle2">CONFIRM DELETE?</h5>
+                    <button type="button" class="close" data-mdb-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form th:action="@{/product/delete}" method="post">
+                    <div class="modal-body">
+                        <input type="hidden" id="id_delete" name="id">
+                        <div id="name_delete"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">NO</button>
+                        <button type="submit" class="btn btn-danger">YES</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <th:block th:replace="layout :: footer"></th:block>
+</div>
+<th:block th:replace="layout :: link-md-boostrap-js"></th:block>
+<script src="https://code.jquery.com/jquery-2.2.4.js"
+        integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+        crossorigin="anonymous"></script>
+</body>
+</html>
+<script>
+    function deleteModal(id, name) {
+        document.getElementById("id_delete").value = id;
+        document.getElementById("name_delete").innerText = "Name: " + name;
+    }
+
+    document.querySelector('table').onclick = ({
+                                                   target
+                                               }) => {
+        if (!target.classList.contains('more')) return
+        document.querySelectorAll('.dropout.active').forEach(
+            (d) => d !== target.parentElement && d.classList.remove('active')
+        )
+        target.parentElement.classList.toggle('active')
+    }
+</script>

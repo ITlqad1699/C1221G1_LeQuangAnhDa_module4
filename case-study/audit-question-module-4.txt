@@ -1,6 +1,9 @@
 1	Vẽ và trình bày cách Spring MVC xử lý request
 2	Trình bày cơ chế Dependency Injection trong Spring
+module cấp cao ko fuj thuộc vào module cấp thấp mà phải thông qua trừu tượng, interface or abstract
+khi chỉnh sửa thì chỉ việc chỉnh sửa module cấp thấp
 3	Có bao nhiêu cách để thực hiện Dependency Injection? Trình bày?
+3 cách: dùng interface, dùng constructor, dùng getter setter.
 4	Framework là gì ? Framework khác Library chỗ nào ?
 5	Spring Framework là gì ?
 6	Lợi ích của Spring Framework?

@@ -44,8 +44,9 @@ public class EmployeeService implements IEmployeeService {
     public void save(Employee employee) {
         // goi cac phuong thuc lien quan toi dang ky user
         // dang ky user cho employee
-        AppUser appUser = this.appUserRepository.findByUsername(employee.getEmail());
-        if(appUser == null){
+//        AppUser appUser = this.appUserRepository.findByUsername(employee.getEmail());
+//        if(appUser == null){
+        if(employee.getId() == null){
             AppUser employeeUser = new AppUser();
             this.iUserRoleService.saveUser(employee, employeeUser);
             AppRole userRole = this.iAppRoleService.findRole(1);

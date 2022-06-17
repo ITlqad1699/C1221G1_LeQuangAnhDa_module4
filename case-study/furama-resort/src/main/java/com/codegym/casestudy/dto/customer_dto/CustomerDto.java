@@ -16,14 +16,13 @@ public class CustomerDto implements Validator {
     private Integer id;
 
     @NotBlank(message = "*Not blank")
-    @Pattern(regexp = "[0-9]{9}",message ="*format error" )
+    @Pattern(regexp = "[0-9]{9,12}",message ="*format error" )
     private String idCard;
 
     @NotBlank(message = "*Please input name")
     @Pattern(regexp = "[A-Za-z ]+", message = "*Wrong format name")
     private String name;
 
-    @Pattern(regexp = "^((2000|2400|2800|(19|2[0-9])(0[48]|[2468][048]|[13579][26]))-02-29)$", message = "*wrong date time")
     @NotBlank(message = "*day of birth is not null")
     private String birthDay;
 
@@ -52,6 +51,26 @@ public class CustomerDto implements Validator {
 
     @NotNull(message = "*choose customer type")
     private CustomerType customerType;
+
+    @Override
+    public String toString() {
+        return "CustomerDto{" +
+                "id=" + id +
+                ", idCard='" + idCard + '\'' +
+                ", name='" + name + '\'' +
+                ", birthDay='" + birthDay + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", gender=" + gender +
+                ", customerCode='" + customerCode + '\'' +
+                ", customerCodeList=" + customerCodeList +
+                ", phoneList=" + phoneList +
+                ", idCardList=" + idCardList +
+                ", emailList=" + emailList +
+                ", customerType=" + customerType +
+                '}';
+    }
 
     public CustomerDto() {
     }

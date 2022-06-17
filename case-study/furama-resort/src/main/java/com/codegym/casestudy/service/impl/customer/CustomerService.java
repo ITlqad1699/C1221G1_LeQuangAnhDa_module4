@@ -33,12 +33,12 @@ public class CustomerService implements ICustomerService {
 
     @Override
     public Customer findById(Integer id) {
-        return this.iCustomerRepository.findById(id).get();
+        return this.iCustomerRepository.findById(id).orElse(null);
     }
 
     @Override
     public void delete(Customer customer) {
-        this.iCustomerRepository.delete(customer);
+        this.iCustomerRepository.deleteById(customer.getId());
     }
 
     @Override
@@ -78,6 +78,11 @@ public class CustomerService implements ICustomerService {
     @Override
     public List<String> getIdCard() {
         return this.iCustomerRepository.getIdCard();
+    }
+
+    @Override
+    public Page<Customer> getAllApi(Pageable pageable) {
+        return this.iCustomerRepository.findAll(pageable);
     }
 
 

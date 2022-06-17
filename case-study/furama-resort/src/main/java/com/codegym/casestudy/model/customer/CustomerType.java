@@ -1,6 +1,8 @@
 package com.codegym.casestudy.model.customer;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -15,10 +17,20 @@ public class CustomerType {
     @Column(name = "customer_type_name")
     private String name;
 
-    @OneToMany(mappedBy = "customerType")
+    @JsonBackReference
+    @OneToMany(mappedBy = "customerType", cascade = {CascadeType.ALL})
     private List<Customer> customers;
 
     public CustomerType() {
+    }
+
+    @Override
+    public String toString() {
+        return "CustomerType{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", customers=" + customers +
+                '}';
     }
 
     public List<Customer> getCustomers() {

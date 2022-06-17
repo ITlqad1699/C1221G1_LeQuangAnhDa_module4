@@ -73,7 +73,6 @@ public class ContractController {
     public String createFacility(@ModelAttribute @Validated ContractDto contractDto,
                                  BindingResult bindingResult,
                                  Model model){
-//        customerDto.setCustomerCodeList(this.iFacilityService.getCustomerCode());
         new ContractDto().validate(contractDto,bindingResult);
         if(bindingResult.hasFieldErrors()){
             model.addAttribute("customers", iCustomerService.findAll());

@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "typeMismatch.java.lang.Integer",
+      "type": "java.lang.String",
+      "description": "Description for typeMismatch.java.lang.Integer."
+  }
+] }

@@ -34,4 +34,6 @@ public interface ICustomerService {
     List<String> getPhone();
 
     List<String> getIdCard();
+
+    Page<Customer> getAllApi(Pageable pageable);
 }

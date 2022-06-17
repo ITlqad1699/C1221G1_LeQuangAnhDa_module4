@@ -4,6 +4,7 @@ import com.codegym.casestudy.service.impl.user.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -45,7 +46,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
 
         // Các trang không yêu cầu login
-        http.authorizeRequests().antMatchers("/","/login","/logout").permitAll();
+        http.authorizeRequests().antMatchers("/", "/login", "/logout", "/api/customer/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/customer/**").permitAll()
+                .antMatchers(HttpMethod.DELETE, "/api/customer/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/customer/**").permitAll()
+                .antMatchers(HttpMethod.PATCH, "/api/customer/**").permitAll();
 
         // Trang /userInfo yêu cầu phải login với vai trò ROLE_USER hoặc ROLE_ADMIN.
         // Nếu chưa login, nó sẽ redirect tới trang /login.
@@ -55,7 +60,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         // Trang chỉ dành cho ADMIN
         http.authorizeRequests().antMatchers("/employee/**").access("hasRole('ROLE_ADMIN')");
-        http.authorizeRequests().antMatchers("/customer/**").access("hasRole('ROLE_ADMIN')");
         http.authorizeRequests().antMatchers("/contractDetail/**").access("hasRole('ROLE_ADMIN')");
 
         // Khi người dùng đã login, với vai trò XX.

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="layout :: link-md-boostrap-css"></th:block>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="container col-8 my-3">
+    <th:block th:replace="layout :: header"></th:block>
+    <form th:action="@{/product/update}" th:object="${orderDto}"
+          method="POST" class="form-control">
+        <h1 class="text-center" style="font-family: 'Quicksand', serif">Chỉnh Sửa Đơn Hàng</h1>
+        <div class="row mx-auto mb-4 mt-4">
+            <input type="hidden" th:field="*{orderId}"/>
+            <div class="row mb-4">
+                <div class="col">
+                    <div class="form-outline">
+                        <input type="text" id="formControlDefault" class="form-control" th:field="*{quantity}"/>
+                        <label class="form-label" for="formControlDefault">số lượng</label>
+                    </div>
+                    <span class="text-danger" th:if="${#fields.hasErrors('quantity')}" th:text="${#fields.errors('quantity').get(0)}"></span>
+                </div>
+                <div class="col">
+                    <div class="form-outline">
+                        <input type="date" id="formControlDefault1" class="form-control" th:field="*{purchaseDate}"/>
+                        <label class="form-label" for="formControlDefault">ngày mua</label>
+                    </div>
+                    <span class="text-danger" th:if="${#fields.hasErrors('purchaseDate')}" th:errors="*{purchaseDate}"></span>
+                </div>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col">
+                    <select th:field="*{product.productType}" class="form-select" >
+                        <option th:each="item :${productTypeList}"
+                                th:value="${item.productTypeId}"
+                                th:text="${item.productTypeName}">
+                        </option>
+                    </select>
+                    <span class="text-danger" th:if="${#fields.hasErrors('product')}" th:errors="*{product}"></span>
+                </div>
+                <div class="col">
+                    <select th:field="*{product}" class="form-select" >
+                        <option th:each="item :${products}"
+                                th:value="${item.productId}"
+                                th:text="${item.name}">
+                        </option>
+                    </select>
+                    <span class="text-danger" th:if="${#fields.hasErrors('product')}" th:errors="*{product}"></span>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Lưu</button>
+        </div>
+    </form>
+    <th:block th:replace="layout :: footer"></th:block>
+</div>
+<th:block th:replace="layout :: link-md-boostrap-js"></th:block>
+</body>
+</html>
